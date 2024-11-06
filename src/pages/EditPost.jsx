@@ -3,7 +3,7 @@ import Footer from "../componetes/Footer"
 import Navbar from "../componetes/Navbar"
 import {ImCross} from 'react-icons/im'
 import axios from "axios"
-import { URL } from "../url"
+import { URL, IF } from "../url"
 import { useNavigate, useParams } from "react-router-dom"
 import { UserContext } from "../context/UserContext"
 
@@ -18,13 +18,14 @@ const EditPost = () => {
   const [file,setFile]=useState(null)
   const [cat,setCat]=useState("")
   const [cats,setCats]=useState([])
+  const [photo, setPhoto] = useState("");
 
   const fetchPost=async()=>{
     try{
       const res=await axios.get(URL+"/api/posts/"+postId)
       setTitle(res.data.title)
       setDesc(res.data.desc)
-      setFile(res.data.photo)
+      setPhoto(res.data.photo)
       setCats(res.data.categories)
       setContactNo(res.data.contactNo)
 
@@ -60,7 +61,10 @@ const EditPost = () => {
       catch(err){
         console.log(err)
       }
+    } else {
+      post.photo = photo;
     }
+
     //post upload
    
     try{
@@ -82,7 +86,7 @@ const EditPost = () => {
 
   const deleteCategory = (i) => {
     let updatedCats = [...cats]
-    updatedCats.splice(i)
+    updatedCats.splice(i, 1)
     setCats(updatedCats)
 
   }
@@ -101,6 +105,7 @@ const EditPost = () => {
       <form className="w-full mt-4 space-y-4 md:space-y-8">
         <input  onChange={(e)=>setTitle(e.target.value)} value={title} type="text" className="px-4 py-2 outline-none w-full  border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter post title"></input>
         <input onChange={(e)=>setFile(e.target.files[0])} type="file" className="px-4 w-full md:w-2/3"></input>
+        {photo && !file && <img src={IF + photo} alt="Current" className="w-full md:w-1/3 mt-4" />}
         <div className="flex flex-col">
           <div className="flex items-center space-x-4 md:space-x-8">
             <input value={cat} onChange={(e)=>setCat(e.target.value)} className="px-4 py-2 outline-none   border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter the post catergory" type="text"></input>

@@ -103,7 +103,7 @@ const PostDetailsItem = () => {
               <p className="text-gray-600">{new Date(post.updatedAt).toString().slice(16, 24)}</p>
             </div>
           </div>
-          <img src={IF + post.photo} className="w-[20%] h-[20%] mx-auto mt-8" alt="" />
+          <img src={IF + post.photo} className="w-[100%] h-[100%] mx-auto mt-4" alt="" />
           <div className="flex items-center mt-8 space-x-4 font-semibold">
             <p className="text-green-600">Categories:</p>
             <div className="flex justify-center items-center space-x-2">
