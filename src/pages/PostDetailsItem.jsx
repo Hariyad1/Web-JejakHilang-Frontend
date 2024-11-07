@@ -1,14 +1,14 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Comment from "../componetes/Comment";
-import Footer from "../componetes/Footer";
-import Navbar from "../componetes/Navbar";
+import Comment from "../component/Comment";
+import Footer from "../component/Footer";
+import Navbar from "../component/Navbar";
 import { BiEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
 import { URL, IF } from "../url";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
-import Loader from "../componetes/Loader";
+import Loader from "../component/Loader";
 
 const PostDetailsItem = () => {
   const postId = useParams().id;

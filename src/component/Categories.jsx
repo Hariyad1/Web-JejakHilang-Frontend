@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 
-const Catergories = () => {
+const Categories = () => {
   return (
     <div className="items-center md:px-[200px] py-10">
 
@@ -18,4 +18,4 @@ const Catergories = () => {
        
 )
   }
-export default Catergories
+export default Categories

@@ -1,11 +1,11 @@
 import axios from "axios"
-import Footer from "../componetes/Footer"
-import HomePostItem from "../componetes/HomePostItem"
-import Navbar from "../componetes/Navbar"
+import Footer from "../component/Footer"
+import HomePostItem from "../component/HomePostItem"
+import Navbar from "../component/Navbar"
 import { URL } from "../url"
 import { useContext, useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
-import Loader from '../componetes/Loader'
+import Loader from '../component/Loader'
 import { UserContext } from "../context/UserContext"
  
 

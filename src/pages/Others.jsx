@@ -1,4 +1,4 @@
-import HomePostOthers from "../componetes/HomePostOthers.jsx"
+import HomePostOthers from "../component/HomePostOthers.jsx"
 import {IoArrowBackSharp} from  'react-icons/io5'
 import { Link } from "react-router-dom"
 

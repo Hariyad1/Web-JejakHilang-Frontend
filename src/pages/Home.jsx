@@ -1,7 +1,7 @@
-import SectionCatagorize from "../componetes/SectionCatagorize"
-import Footer from "../componetes/Footer"
-//import Catergories from "../componetes/Catergories"
-//import Navbar from "../componetes/Navbar"
+import SectionCategorize from "../component/SectionCategorize"
+import Footer from "../component/Footer"
+//import Categories from "../component/Categories"
+//import Navbar from "../component/Navbar"
 
 const Home = () => {
   return (
@@ -15,7 +15,7 @@ const Home = () => {
         </div>        
         </div>
       <div className="space-y-0">
-        <SectionCatagorize />
+        <SectionCategorize />
         <Footer />
       </div>
     </div>
