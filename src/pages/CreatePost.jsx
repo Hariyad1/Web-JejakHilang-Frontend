@@ -68,13 +68,13 @@ const CreatePost = () => {
   return (
     <div className=" bg-gray-100 " >
       <Navbar />
-      <div className="px-6 md:px-32 mt-8 w-[80%]">
+      <div className="px-6 md:px-32 mt-8 w-full">
         <h1 className="font-bold text-2xl md:text-3xl mt-8">Create a post</h1>
         <form className="w-full mt-4 space-y-4 md:space-y-8">
           <input
             onChange={(e) => setTitle(e.target.value)}
             type="text"
-            className="px-4 py-2 outline-none w-full  border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 outline-none w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
             placeholder="Enter post title"
           />
           <input
@@ -117,7 +117,7 @@ const CreatePost = () => {
           </div>
           <textarea
             onChange={(e) => setDesc(e.target.value)}
-            rows={15}
+            rows={5}
             cols={30}
             className="px-4 py-2 outline-none w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
             placeholder="Enter post description"
@@ -125,7 +125,7 @@ const CreatePost = () => {
           <input
             onChange={(e) => setContactNo(e.target.value)}
             type="text"
-            className="px-4 py-2 outline-none w-full md:w-2/3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 outline-none w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
             placeholder="Enter contact number"
           />
           <div className="flex flex-wrap">

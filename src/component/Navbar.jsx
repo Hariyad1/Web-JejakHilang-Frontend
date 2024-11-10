@@ -54,7 +54,7 @@ const Navbar = () => {
             </h3>
           )}
           {user ? (
-            <div onClick={showMenu} className="relative">
+            <div onClick={showMenu} className="relative text-3xl">
               <p className="cursor-pointer text-white">
                 <FaBars />
               </p>

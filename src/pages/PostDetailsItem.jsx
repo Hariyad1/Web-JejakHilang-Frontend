@@ -85,7 +85,7 @@ const PostDetailsItem = () => {
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-blue-600 md:text-3xl">{post.title}</h1>
             {user?._id === post?.userId && (
-              <div className="flex items-center text-3xl justify-center space-x-2">
+              <div className="flex items-center text-4xl justify-center space-x-4">
                 <p
                   className="cursor-pointer text-red-600  hover:text-red-400"
                   onClick={() => navigate("/edit/" + postId)}
@@ -103,7 +103,9 @@ const PostDetailsItem = () => {
               <p className="text-gray-600">{new Date(post.updatedAt).toString().slice(16, 24)}</p>
             </div>
           </div>
-          <img src={IF + post.photo} className="w-[100%] h-[100%] mx-auto mt-4" alt="" />
+          <div className="w-full flex justify-center">
+            <img src={IF + post.photo} className="max-w-[500px] h-auto mt-4" alt="" />
+          </div>
           <div className="flex items-center mt-8 space-x-4 font-semibold">
             <p className="text-green-600">Categories:</p>
             <div className="flex justify-center items-center space-x-2">
@@ -129,7 +131,7 @@ const PostDetailsItem = () => {
             ))}
           </div>
           {/* Write a comment */}
-          <div className="w-full flex flex-col mt-4 md:flex-row">
+          <div className="w-[50%] flex flex-col mt-4 md:flex-row">
             <input
               onChange={(e) => setComment(e.target.value)}
               type="text"
