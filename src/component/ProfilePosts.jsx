@@ -21,7 +21,7 @@ const ProfilePosts = ({ p }) => {
           </div>
         </div>
         <p className="text-sm md:text-md text-gray-600">
-          {p.desc.slice(0, 200)} ...<span className="text-blue-600 cursor-pointer hover:underline">Read more</span>
+          {p.desc}
         </p>
       </div>
     </div>

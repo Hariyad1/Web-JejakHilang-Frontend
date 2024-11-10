@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import axios from "axios"
 import { BiEdit } from "react-icons/bi"
 import { MdDelete } from "react-icons/md"

@@ -44,7 +44,6 @@ const Navbar = () => {
           {user ? (
             <h3>
               <Link to="/write" className="text-white hover:underline">
-                Write
               </Link>
             </h3>
           ) : (
@@ -71,7 +70,7 @@ const Navbar = () => {
         </div>
         <div
           onClick={showMenu}
-          className="md:hidden text-2xl cursor-pointer text-white"
+          className="md:hidden text-2xl cursor-pointer text-white ml-2"
         >
           <p className="cursor-pointer relative">
             <FaBars />
