@@ -12,11 +12,16 @@ const Login = () => {
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
       const res = await axios.post(URL + "/api/auth/login", { email, password }, { withCredentials: true });
       setUser(res.data);
-      navigate("/Item");
+      if (res.data.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/item");
+      }
     } catch (err) {
       setError(true);
       console.log(err);
@@ -29,22 +34,22 @@ const Login = () => {
         <h1 className="text-lg md:text-3xl pl-20 font-extrabold">
           <Link to="/">Temukan Barang Hilang Anda</Link>
         </h1>
-        <Link to="/register" className="text-white pr-20 hover:underline">Register</Link>
+        <Link to="/register" className="text-white pr-20 hover:underline">Daftar</Link>
       </header>
       <main className="flex-1 flex justify-center items-center">
         <div className="w-full md:w-1/3 p-4 bg-white shadow-md rounded-lg">
-          <h1 className="text-2xl font-bold mb-4">Log in to your account</h1>
+          <h1 className="text-2xl font-bold mb-4 text-center">Masukkan Akun Anda</h1>
           <input
             onChange={(e) => setEmail(e.target.value)}
             className="w-full px-4 py-2 mb-3 border rounded-lg focus:outline-none"
             type="text"
-            placeholder="Enter your Email"
+            placeholder="Masukkan Email"
           />
           <input
             onChange={(e) => setPassword(e.target.value)}
             className="w-full px-4 py-2 mb-3 border rounded-lg focus:outline-none"
             type="password"
-            placeholder="Enter your Password"
+            placeholder="Masukkan Password"
           />
           <button
             onClick={handleLogin}
@@ -54,8 +59,8 @@ const Login = () => {
           </button>
           {error && <p className="text-red-500 text-sm mt-2">Something went wrong</p>}
           <div className="justify-center flex mt-4">
-            <p>New here?</p>
-            <Link to="/register" className="ml-2 text-blue-500 hover:underline">Register</Link>
+            <p>Belum memiliki akun?</p>
+            <Link to="/register" className="ml-2 text-blue-500 hover:underline">Daftar disini</Link>
           </div>
         </div>
       </main>
