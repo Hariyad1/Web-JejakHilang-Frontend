@@ -105,7 +105,7 @@ const EditPost = () => {
       <form className="w-full mt-4 space-y-4 md:space-y-8">
         <input  onChange={(e)=>setTitle(e.target.value)} value={title} type="text" className="px-4 py-2 outline-none w-full  border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter post title"></input>
         <input onChange={(e)=>setFile(e.target.files[0])} type="file" className="px-4 w-full md:w-2/3"></input>
-        {photo && !file && <img src={IF + photo} alt="Current" className="w-full md:w-1/3 mt-4" />}
+        {photo && !file && <img src={photo} alt="Current" className="w-full md:w-1/3 mt-4" />}
         <div className="flex flex-col">
           <div className="flex items-center space-x-4 md:space-x-8">
             <input value={cat} onChange={(e)=>setCat(e.target.value)} className="px-4 py-2 outline-none   border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter the post catergory" type="text"></input>
