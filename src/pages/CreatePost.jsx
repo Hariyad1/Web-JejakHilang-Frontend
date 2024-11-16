@@ -16,6 +16,7 @@ const CreatePost = () => {
   const [cat, setCat] = useState("");
   const [cats, setCats] = useState([]);
   const navigate = useNavigate();
+  const [reportType, setReportType] = useState("");
 
   const deleteCategory = (i) => {
     let updatedCats = [...cats];
@@ -39,18 +40,24 @@ const CreatePost = () => {
       userId: user._id,
       categories: cats,
       contactNo: contactno,
+      reportType,
     };
 
     // Image upload
     if (file) {
-      const data = new FormData();
-      const filename = Date.now() + file.name;
-      data.append("img", filename);
-      data.append("file", file);
-      post.photo = filename;
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("fileName", Date.now() + file.name);
 
       try {
-        const imgUpload = await axios.post(URL + "/api/upload", data);
+        const imgUpload = await axios.post(URL + "/api/upload", formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+
+        // Simpan URL yang dikembalikan oleh ImageKit
+        post.photo = imgUpload.data.url; // Pastikan ini adalah path yang benar dari response
       } catch (err) {
         console.log(err);
       }
@@ -69,13 +76,13 @@ const CreatePost = () => {
     <div className=" bg-gray-100 " >
       <Navbar />
       <div className="px-6 md:px-32 mt-8 w-full">
-        <h1 className="font-bold text-2xl md:text-3xl mt-8">Create a post</h1>
+        <h1 className="font-bold text-2xl md:text-3xl mt-8 text-center">Buat Laporan</h1>
         <form className="w-full mt-4 space-y-4 md:space-y-8">
           <input
             onChange={(e) => setTitle(e.target.value)}
             type="text"
             className="px-4 py-2 outline-none w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter post title"
+            placeholder="Masukkan Judul Laporan"
           />
           <input
             onChange={(e) => setFile(e.target.files[0])}
@@ -87,15 +94,15 @@ const CreatePost = () => {
               <input
                 value={cat}
                 onChange={(e) => setCat(e.target.value)}
-                className="px-4 py-2 outline-none   border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter the post category"
+                className="px-4 py-2 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 w-64"
+                placeholder="Masukkan Kategori Laporan"
                 type="text"
               />
               <div
                 onClick={addCategory}
                 className="bg-blue-500 text-white rounded-lg px-4 py-2 font-semibold cursor-pointer hover:bg-blue-600"
               >
-                Add
+                Tambah
               </div>
             </div>
             <div className="flex px-4 mt-3">
@@ -120,14 +127,39 @@ const CreatePost = () => {
             rows={5}
             cols={30}
             className="px-4 py-2 outline-none w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter post description"
+            placeholder="Masukkan Deskripsi Laporan"
           />
           <input
             onChange={(e) => setContactNo(e.target.value)}
             type="text"
             className="px-4 py-2 outline-none w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter contact number"
+            placeholder="Masukkan Nomor Kontak"
           />
+          <div className="mt-4">
+            <h2 className="font-semibold mb-2">Pilih Jenis Laporan:</h2>
+            <div className="flex space-x-10">
+              <label className="flex items-center text-lg">
+                <input
+                  type="radio"
+                  value="Penemu"
+                  checked={reportType === "Penemu"}
+                  onChange={(e) => setReportType(e.target.value)}
+                  className="mr-3"
+                />
+                Penemu (Orang yang Menemukan)
+              </label>
+              <label className="flex items-center text-lg">
+                <input
+                  type="radio"
+                  value="Pencari"
+                  checked={reportType === "Pencari"}
+                  onChange={(e) => setReportType(e.target.value)}
+                  className="mr-3"
+                />
+                Pencari (Orang yang Mencari)
+              </label>
+            </div>
+          </div>
           <div className="flex flex-wrap">
             <button
               onClick={handleCreate}
