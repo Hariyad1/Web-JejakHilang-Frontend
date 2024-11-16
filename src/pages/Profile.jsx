@@ -31,6 +31,14 @@ const Profile = () => {
 
   const handleUserUpdate = async () => {
     setUpdated(false);
+
+    // Validasi email
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
     try {
       const res = await axios.put(
         URL + "/api/users/" + user._id,
@@ -75,10 +83,10 @@ const Profile = () => {
   }, [param, user]);
 
   return (
-    <div className=" bg-gray-100 ">
+    <div className="bg-gray-100">
       <Navbar />
-      <div className="min-h-screen px-4 md:px-8 md:space-x-8 mt-8 flex flex-col md:flex-row  z-10">
-        <div className="md:w-[70%] w-full md:mt-0">
+      <div className="min-h-screen px-4 md:px-8 md:space-x-8 mt-8 flex flex-col md:flex-row z-10">
+        <div className="md:w-[70%] w-full md:mt-0 mb-8 md:mb-0">
           <h1 className="text-2xl md:text-3xl font-bold mb-4">Your Posts:</h1>
           {posts?.map((p) => (
             <ProfilePosts key={p._id} p={p} />
