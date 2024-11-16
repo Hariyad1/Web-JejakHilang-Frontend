@@ -23,6 +23,7 @@ const PostDetailsItem = () => {
     try {
       const res = await axios.get(URL + "/api/posts/" + postId);
       setPost(res.data);
+      console.log("Post data:", res.data);
     } catch (err) {
       console.log(err);
     }
@@ -30,7 +31,7 @@ const PostDetailsItem = () => {
 
   const handleDeletePost = async () => {
     try {
-      const res = await axios.delete(URL+"/api/posts/"+postId,{
+      const res = await axios.delete(URL + "/api/posts/" + postId, {
         withCredentials: true
       });
       navigate("/Item");
@@ -87,7 +88,7 @@ const PostDetailsItem = () => {
             {user?._id === post?.userId && (
               <div className="flex items-center text-4xl justify-center space-x-4">
                 <p
-                  className="cursor-pointer text-red-600  hover:text-red-400"
+                  className="cursor-pointer text-red-600 hover:text-red-400"
                   onClick={() => navigate("/edit/" + postId)}
                 >
                   <BiEdit />
@@ -98,13 +99,14 @@ const PostDetailsItem = () => {
             )}
           </div>
           <div className="flex items-center justify-between mt-2 md:mt-4">
-            <div className="flex space-x-2 ">
+            <div className="flex space-x-2">
               <p className="text-gray-600">{new Date(post.updatedAt).toString().slice(0, 15)}</p>
               <p className="text-gray-600">{new Date(post.updatedAt).toString().slice(16, 24)}</p>
             </div>
           </div>
           <div className="w-full flex justify-center">
-            <img src={IF + post.photo} className="max-w-[500px] h-auto mt-4" alt="" />
+            <img src={post.photo} className="w-full max-w-[500px] h-auto mt-4" alt="Post Image" />
+            {console.log("Image URL:", post.photo)}
           </div>
           <div className="flex items-center mt-8 space-x-4 font-semibold">
             <p className="text-green-600">Categories:</p>
@@ -123,6 +125,9 @@ const PostDetailsItem = () => {
             <p className="text-sm md:text-lg text-gray-700 mt-6 mb-4">{post.desc}</p>
             <p className="text-sm md:text-m text-gray-600">Posted by: {post.username}</p>
             <p className="text-sm md:text-m text-gray-600">Contact Number: {post.contactNo}</p>
+            {post.reportType && (
+              <p className="text-sm md:text-m text-gray-600">Tipe Laporan: {post.reportType}</p>
+            )}
           </div>
           <div className="flex flex-col mt-4">
             <h3 className="text-blue-600 text-xl font-semibold mt-6 mb-4">Comments:</h3>
@@ -131,16 +136,16 @@ const PostDetailsItem = () => {
             ))}
           </div>
           {/* Write a comment */}
-          <div className="w-[50%] flex flex-col mt-4 md:flex-row">
+          <div className="w-full md:w-[50%] flex flex-col mt-4 md:flex-row">
             <input
               onChange={(e) => setComment(e.target.value)}
               type="text"
               placeholder="Write a comment"
-              className="md:w-[80%] outline-none py-2 px-4 mt-4 md:mt-0 rounded-lg"
+              className="md:w-[80%] outline-none py-2 px-4 mt-4 md:mt-0 rounded-lg order-1 md:order-1 border border-gray-300 mb-1 md:mb-0 md:mr-4"
             />
             <button
               onClick={postComment}
-              className="bg-blue-600 text-white text-sm px-2 py-2 md:w-[20%] mt-4 md:mt-0 rounded-lg hover:bg-blue-400 hover:text-black"
+              className="bg-blue-600 text-white text-sm px-2 py-2 w-full md:w-[20%] mt-4 md:mt-0 rounded-lg hover:bg-blue-400 hover:text-black order-2 md:order-2"
             >
               Add Comment
             </button>
