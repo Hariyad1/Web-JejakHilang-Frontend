@@ -41,7 +41,7 @@ const SectionCatagorize = () => {
           <h2 className="text-3xl font-extrabold mb-10 mt-4">Temukan Barang Hilang Anda dari Sini</h2>
           <p className="text-lg mt-4 mb-10">Buat Postingan dan Cari Barang Hilang Anda di Sini</p>
           <Link
-            to="/Item"
+            to="/item"
             className="mt-10 px-6 py-2 bg-blue-600 rounded-full hover:bg-blue-700 text-white text-sm font-semibold transition duration-300 ease-in-out"
           >
             Explore Now

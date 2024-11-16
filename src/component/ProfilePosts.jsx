@@ -6,7 +6,7 @@ const ProfilePosts = ({ p }) => {
     <div className="w-full flex mt-8 space-x-4 rounded-lg overflow-hidden bg-white shadow-lg">
       {/* Left */}
       <div className="w-[35%] h-[200px] flex justify-center items-center">
-        <img src={IF + p.photo} alt={p.title} className="h-[70%] w-[50%] " />
+      <img src={p.photo} alt={p.title} className="h-[70%] w-[50%] " />
       </div>
       {/* Right */}
       <div className="flex flex-col w-[65%] p-4">
