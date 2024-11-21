@@ -7,6 +7,10 @@ import { URL, IF } from "../url"
 import { useNavigate, useParams } from "react-router-dom"
 import { UserContext } from "../context/UserContext"
 
+function validateContactNo(contactNo) {
+  const contactNoPattern = /^\+?[0-9]{9,15}$/;
+  return contactNoPattern.test(contactNo);
+}
 
 const EditPost = () => {
   const postId=useParams().id
@@ -68,6 +72,9 @@ const EditPost = () => {
     //post upload
    
     try{
+      if (!validateContactNo(contactNo)) {
+        throw new Error('Please enter a valid contact number');
+      }
       const res=await axios.put(URL+"/api/posts/"+postId,post,{withCredentials:true})
       navigate("/posts/post/"+res.data._id)
       // console.log(res.data)
@@ -100,15 +107,23 @@ const EditPost = () => {
 
    <div className=" bg-gray-100 ">
     <Navbar/>
-    <div className="px-6 md:px-32 mt-8 w-[80%]">
+    <div className="px-8 md:px-64 mt-8 w-[100%]">
       <h1 className="font-bold text-2xl md:text-3xl mt-8">Update a post</h1>
       <form className="w-full mt-4 space-y-4 md:space-y-8">
-        <input  onChange={(e)=>setTitle(e.target.value)} value={title} type="text" className="px-4 py-2 outline-none w-full  border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter post title"></input>
-        <input onChange={(e)=>setFile(e.target.files[0])} type="file" className="px-4 w-full md:w-2/3"></input>
+        <div>
+          <h2 className="font-semibold mb-2">Judul Laporan:</h2>
+          <input  onChange={(e)=>setTitle(e.target.value)} value={title} type="text" className="px-4 py-2 outline-none w-full  border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter post title"></input>
+        </div>
+        <div>
+          <h2 className="font-semibold mb-2">Foto Laporan:</h2>
+          <input onChange={(e)=>setFile(e.target.files[0])} type="file" className="px-4 w-full md:w-2/3"></input>
+        </div>
         {photo && !file && <img src={photo} alt="Current" className="w-full md:w-1/3 mt-4" />}
         <div className="flex flex-col">
-          <div className="flex items-center space-x-4 md:space-x-8">
-            <input value={cat} onChange={(e)=>setCat(e.target.value)} className="px-4 py-2 outline-none   border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter the post catergory" type="text"></input>
+          <div></div>
+            <h2 className="font-semibold mb-2">Kategori Laporan:</h2>
+            <div className="flex items-center space-x-4 md:space-x-8"> 
+              <input value={cat} onChange={(e)=>setCat(e.target.value)} className="px-4 py-2 outline-none   border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter the post catergory" type="text"></input>
             <div onClick={addCategory} className="bg-blue-500 text-white rounded-lg px-4 py-2 font-semibold cursor-pointer hover:bg-blue-600">Add</div>            
           </div>
 
@@ -121,8 +136,14 @@ const EditPost = () => {
             
           </div>
         </div>
-        <textarea  onChange={(e)=>setDesc(e.target.value)} value={desc}  rows={15} cols={30} className="px-4 py-2 outline-none w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter post description"/>
-        <input onChange={(e)=>setContactNo(e.target.value)} value={contactNo} type="text" className="px-4 py-2 outline-none w-full md:w-2/3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter contact Number"></input>
+        <div>
+          <h2 className="font-semibold mb-2">Deskripsi Laporan:</h2>
+          <textarea  onChange={(e)=>setDesc(e.target.value)} value={desc}  rows={5} cols={0} className="px-4 py-2 outline-none w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter post description"/>
+        </div>
+        <div>
+          <h2 className="font-semibold mb-2">Nomor Kontak:</h2>
+          <input onChange={(e)=>setContactNo(e.target.value)} value={contactNo} type="text" className="px-4 py-2 outline-none w-full md:w-2/3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter contact Number"></input>
+        </div>
         <div className="flex flex-wrap">
         <button onClick={handleUpdate}  className="bg-blue-500 w-full md:w-1/4 mx-auto text-white font-semibold px-4 py-2 rounded-lg md:text-xl text-lg hover:bg-blue-600">Update</button>
         </div>

@@ -4,6 +4,7 @@ import Footer from "../component/Footer";
 import Navbar from "../component/Navbar";
 import { BiEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
+import { UserOutlined, PhoneOutlined, TagOutlined, FileOutlined, CalendarOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { URL, IF } from "../url";
 import { useContext, useEffect, useState } from "react";
@@ -68,7 +69,7 @@ const PostDetailsItem = () => {
         { comment: comment, author: user.username, postId: postId, userId: user._id },
         { withCredentials: true }
       );
-      window.location.reload(true);
+      setComments([...comments, res.data]);
     } catch (err) {
       console.log(err);
     }
@@ -82,7 +83,7 @@ const PostDetailsItem = () => {
           <Loader />
         </div>
       ) : (
-        <div className="px-4 md:px-8 mt-8">
+        <div className="px-8 md:px-64 mt-8">
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-blue-600 md:text-3xl">{post.title}</h1>
             {user?._id === post?.userId && (
@@ -100,22 +101,23 @@ const PostDetailsItem = () => {
           </div>
           <div className="flex items-center justify-between mt-2 md:mt-4">
             <div className="flex space-x-2">
+              <CalendarOutlined className="mr-2" />
               <p className="text-gray-600">{new Date(post.updatedAt).toString().slice(0, 15)}</p>
               <p className="text-gray-600">{new Date(post.updatedAt).toString().slice(16, 24)}</p>
             </div>
           </div>
           <div className="w-full flex justify-center">
             <img src={post.photo} className="w-full max-w-[500px] h-auto mt-4" alt="Post Image" />
-            {console.log("Image URL:", post.photo)}
           </div>
           <div className="flex items-center mt-8 space-x-4 font-semibold">
-            <p className="text-green-600">Categories:</p>
+            <p className="text-green-600">Kategori:</p>
             <div className="flex justify-center items-center space-x-2">
               {post.categories?.map((c, i) => (
                 <div
                   key={i}
                   className="bg-yellow-300 rounded-lg px-3 py-1 text-yellow-800"
                 >
+                  <TagOutlined className="mr-2" />
                   {c}
                 </div>
               ))}
@@ -123,29 +125,38 @@ const PostDetailsItem = () => {
           </div>
           <div>
             <p className="text-sm md:text-lg text-gray-700 mt-6 mb-4">{post.desc}</p>
-            <p className="text-sm md:text-m text-gray-600">Posted by: {post.username}</p>
-            <p className="text-sm md:text-m text-gray-600">Contact Number: {post.contactNo}</p>
+            <p className="text-sm md:text-m text-gray-600">
+              <UserOutlined className="mr-2" />
+              Posted by: {post.username}
+            </p>
+            <p className="text-sm md:text-m text-gray-600">
+              <PhoneOutlined className="mr-2" />
+              Contact Number: {post.contactNo}
+            </p>
             {post.reportType && (
-              <p className="text-sm md:text-m text-gray-600">Tipe Laporan: {post.reportType}</p>
+              <p className="text-sm md:text-m text-gray-600">
+                <FileOutlined className="mr-2" />
+                Tipe Laporan: {post.reportType}
+              </p>
             )}
           </div>
           <div className="flex flex-col mt-4">
             <h3 className="text-blue-600 text-xl font-semibold mt-6 mb-4">Comments:</h3>
             {comments?.map((c) => (
-              <Comment key={c._id} c={c} post={post} />
+              <Comment key={c._id} c={c} comments={comments} setComments={setComments} />
             ))}
           </div>
           {/* Write a comment */}
-          <div className="w-full md:w-[50%] flex flex-col mt-4 md:flex-row">
+          <div className="w-full md:w-[75%] flex flex-col mt-4 md:flex-row">
             <input
               onChange={(e) => setComment(e.target.value)}
               type="text"
               placeholder="Write a comment"
-              className="md:w-[80%] outline-none py-2 px-4 mt-4 md:mt-0 rounded-lg order-1 md:order-1 border border-gray-300 mb-1 md:mb-0 md:mr-4"
+              className="md:w-[100%] outline-none py-2 px-4 mt-4 md:mt-0 rounded-lg order-1 md:order-1 border border-gray-300 mb-1 md:mb-0 md:mr-4"
             />
             <button
               onClick={postComment}
-              className="bg-blue-600 text-white text-sm px-2 py-2 w-full md:w-[20%] mt-4 md:mt-0 rounded-lg hover:bg-blue-400 hover:text-black order-2 md:order-2"
+              className="bg-blue-600 text-white text-sm px-2 py-2 w-full md:w-[40%] mt-4 md:mt-0 rounded-lg hover:bg-blue-400 hover:text-black order-2 md:order-2"
             >
               Add Comment
             </button>
