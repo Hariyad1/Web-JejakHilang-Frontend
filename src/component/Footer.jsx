@@ -9,9 +9,9 @@ const Footer = () => {
           <div className="flex items-center space-x-4">
             <img src="/LogoJejakHilang.svg" alt="Logo JejakHilang" className="w-24 h-24" />
             <div className="flex flex-col items-center md:items-start">
-              <p className="text-sm">Alamat: Jl. Contoh No. 123</p>
-              <p className="text-sm">Telepon: (021) 123-4567</p>
-              <p className="text-sm">Email: info@contoh.com</p>
+              <p className="text-sm">Alamat: Jl. Yos Sudarso, Palangka, Kec. Jekan Raya, Kota Palangka Raya, Kalimantan Tengah 74874</p>
+              <p className="text-sm">Telepon: +62 858-4926-8852</p>
+              <p className="text-sm">Email: jejkhilang@gmail.com</p>
               <a href="https://wa.me/6285849268852" className="text-sm flex items-center hover:underline" target="_blank" rel="noopener noreferrer">
                 <FaWhatsapp className="mr-2" />WhatsApp
               </a>
@@ -22,13 +22,13 @@ const Footer = () => {
         <div className="flex flex-col items-center md:mr-32">
           <h2 className="text-xl font-semibold mb-2 text-center">Ikuti Kami</h2>
           <div className="flex flex-col items-center md:items-start">
-            <a href="https://www.facebook.com/jejak.hilang//" className="text-sm flex items-center hover:underline" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/jejkhilang" className="text-sm flex items-center hover:underline" target="_blank" rel="noopener noreferrer">
               <FaFacebook className="mr-2" />Facebook
             </a>
-            <a href="https://twitter.com/jejak_hilang//" className="text-sm flex items-center hover:underline" target="_blank" rel="noopener noreferrer">
+            <a href="https://twitter.com/jejkhilang" className="text-sm flex items-center hover:underline" target="_blank" rel="noopener noreferrer">
               <FaTwitter className="mr-2" />Twitter
             </a>
-            <a href="https://www.instagram.com/jejak.hilang//" className="text-sm flex items-center hover:underline" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/jejkhilang" className="text-sm flex items-center hover:underline" target="_blank" rel="noopener noreferrer">
               <FaInstagram className="mr-2" />Instagram
             </a>
           </div>
