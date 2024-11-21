@@ -1,9 +1,12 @@
-import { useEffect, useState, useContext } from "react";
+// frontend/src/pages/AdminDashboard.jsx
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { URL } from "../url";
 import { UserContext } from "../context/UserContext";
-import { Table, Button } from "antd";
-import { EyeOutlined, DeleteOutlined, MenuOutlined } from "@ant-design/icons";
+import { Table, Button, Pagination } from "antd";
+import { EyeOutlined, DeleteOutlined, MenuOutlined, LogoutOutlined } from "@ant-design/icons";
+import PostDetails from "../component/admincomponent/PostDetails";
+import AdminMenu from "../component/admincomponent/AdminMenu";
 
 const AdminDashboard = () => {
   const { user, setUser } = useContext(UserContext);
@@ -14,6 +17,7 @@ const AdminDashboard = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     if (user?.role === "admin") {
@@ -68,12 +72,23 @@ const AdminDashboard = () => {
     }
   };
 
-  const showPostDetails = (post) => {
-    setSelectedPost(post);
+  const showPostDetails = async (post) => {
+    const comments = await fetchComments(post._id);
+    setSelectedPost({ ...post, comments });
   };
 
   const closePopup = () => {
     setSelectedPost(null);
+  };
+
+  const fetchComments = async (postId) => {
+    try {
+      const res = await axios.get(URL + `/api/comments/post/${postId}`);
+      return res.data;
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
   };
 
   const columnsPosts = [
@@ -87,36 +102,79 @@ const AdminDashboard = () => {
       title: 'Gambar',
       dataIndex: 'photo',
       key: 'photo',
-      render: (text) => <img src={text} alt="Post" className="w-16 h-16 object-cover" />,
+      render: (text) => <img src={text} alt="No Image" className="w-16 h-16 object-cover" />,
     },
     {
       title: 'Judul',
       dataIndex: 'title',
       key: 'title',
+      sorter: (a, b) => a.title.localeCompare(b.title),
     },
     {
       title: 'Deskripsi',
       dataIndex: 'desc',
       key: 'desc',
-      render: (text) => text.length > 200 ? text.substring(0, 200) + '...' : text,
+      width: 400,
+      className: 'hidden md:table-cell',
+      render: (text) => (
+        <div style={{ 
+          whiteSpace: 'normal', 
+          overflow: 'hidden', 
+          textOverflow: 'ellipsis', 
+          width: '400px', 
+          maxWidth: '100%', 
+          boxSizing: 'border-box'
+        }}>
+          {text.length > 300 ? text.substring(0, 300) + '...' : text}
+        </div>
+      ),
+    },
+    {
+      title: 'Jenis Laporan',
+      dataIndex: 'reportType',
+      key: 'reportType',
+      className: 'hidden md:table-cell',
+      sorter: (a, b) => {
+        const order = { 'pencari': 1, 'penemu': 2 };
+        return order[a.reportType] - order[b.reportType];
+      },
     },
     {
       title: 'Diposting',
       dataIndex: 'username',
       key: 'username',
+      className: 'hidden md:table-cell',
+      sorter: (a, b) => a.username.localeCompare(b.username),
     },
     {
       title: 'Kontak',
       dataIndex: 'contactNo',
       key: 'contactNo',
+      className: 'hidden md:table-cell',
+      sorter: (a, b) => a.contactNo.localeCompare(b.contactNo),
     },
     {
       title: 'Aksi',
       key: 'action',
+      align: 'center',
+      width: 150,
       render: (text, record) => (
-        <div className="flex space-x-2">
-          <Button onClick={() => showPostDetails(record)} icon={<EyeOutlined />} />
-          <Button onClick={() => deletePost(record._id)} icon={<DeleteOutlined />} danger />
+        <div className="flex justify-center space-x-2">
+          <Button 
+            onClick={() => showPostDetails(record)} 
+            icon={<EyeOutlined />} 
+            className="flex items-center justify-center"
+          >
+            View
+          </Button>
+          <Button 
+            onClick={() => deletePost(record._id)} 
+            icon={<DeleteOutlined />} 
+            danger 
+            className="flex items-center justify-center"
+          >
+            Delete
+          </Button>
         </div>
       ),
     },
@@ -133,11 +191,13 @@ const AdminDashboard = () => {
       title: 'Username',
       dataIndex: 'username',
       key: 'username',
+      sorter: (a, b) => a.username.localeCompare(b.username),
     },
     {
       title: 'Email',
       dataIndex: 'email',
       key: 'email',
+      sorter: (a, b) => a.email.localeCompare(b.email),
     },
     {
       title: 'Aksi',
@@ -156,38 +216,38 @@ const AdminDashboard = () => {
     user.username.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const paginatedPosts = filteredPosts.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+  const paginatedUsers = filteredUsers.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+
   if (user?.role !== "admin") {
     return <div className="text-center text-red-500">Access Denied</div>;
   }
 
   return (
     <div className="flex">
-      {/* Main Content */}
       <div className="flex-1 p-4">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center md:mx-16 lg:mx-64 mb-4">
           <Button onClick={() => setMenuOpen(!menuOpen)} icon={<MenuOutlined />} />
           <h1 className="hidden md:block text-3xl font-bold">Admin Dashboard</h1>
-          <Button onClick={logout} type="primary" danger>Logout</Button>
+          <Button onClick={logout} type="primary" danger className="flex items-center justify-center">
+            Logout <LogoutOutlined />
+          </Button>
         </div>
 
-        {/* Mobile Menu */}
         {menuOpen && (
-          <div className="bg-black text-white p-4 rounded-lg">
-            <ul>
-              <li className="mb-2">
-                <Button onClick={() => { setView("posts"); setMenuOpen(false); }} className="text-white">Management Posts</Button>
-              </li>
-              <li className="mb-2">
-                <Button onClick={() => { setView("users"); setMenuOpen(false); }} className="text-white">Management User</Button>
-              </li>
-            </ul>
-          </div>
+          <AdminMenu setView={setView} setMenuOpen={setMenuOpen} />
         )}
 
-        <div className="bg-white shadow-lg rounded-lg p-4">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-semibold">{view === "posts" ? "User Posts" : "User Management"}</h2>
-            <div className="flex space-x-2">
+        <div className="bg-white shadow-lg rounded-lg p-4 md:mx-16 lg:mx-64">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+            <h2 className="text-2xl font-semibold mb-2 md:mb-0">
+              {view === "posts" ? "User Posts" : "User Management"}
+            </h2>
+            <div className="flex space-x-2 ml-auto">
               <input
                 type="text"
                 placeholder="Search here..."
@@ -208,54 +268,46 @@ const AdminDashboard = () => {
           </div>
 
           {view === "posts" ? (
-            <Table
-              columns={columnsPosts}
-              dataSource={filteredPosts.slice(0, rowsPerPage)}
-              rowKey="_id"
-            />
+            <>
+              <Table
+                columns={columnsPosts}
+                dataSource={paginatedPosts}
+                rowKey="_id"
+                pagination={false}
+              />
+              <Pagination
+                current={currentPage}
+                pageSize={rowsPerPage}
+                total={filteredPosts.length}
+                onChange={handlePageChange}
+                className="mt-4 text-center"
+              />
+            </>
           ) : (
-            <Table
-              columns={columnsUsers}
-              dataSource={filteredUsers.slice(0, rowsPerPage)}
-              rowKey="_id"
-            />
+            <>
+              <Table
+                columns={columnsUsers}
+                dataSource={paginatedUsers}
+                rowKey="_id"
+                pagination={false}
+              />
+              <Pagination
+                current={currentPage}
+                pageSize={rowsPerPage}
+                total={filteredUsers.length}
+                onChange={handlePageChange}
+                className="mt-4 text-center"
+              />
+            </>
           )}
         </div>
 
-        {/* Pop-up for Post Details */}
         {selectedPost && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
-              <div className="flex justify-between items-center">
-                <h1 className="text-2xl font-bold text-blue-600">{selectedPost.title}</h1>
-                <Button onClick={closePopup} type="danger">Close</Button>
-              </div>
-              <div className="flex justify-center mt-4">
-                <img src={selectedPost.photo} className="max-w-full h-auto" alt="Post Image" />
-              </div>
-              <div className="mt-4">
-                <h1 className="text-gray-700 mb-4">{selectedPost.desc}</h1>
-                <p className="text-gray-600">Posted by: {selectedPost.username}</p>
-                <p className="text-gray-600">Contact Number: {selectedPost.contactNo}</p>
-              </div>
-              <div className="mt-4">
-                <h3 className="text-blue-600 text-xl font-semibold">Comments:</h3>
-                {selectedPost.comments?.length > 0 ? (
-                  selectedPost.comments.map((c) => (
-                    <div key={c._id} className="text-gray-700">
-                      {c.text}
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-gray-500">Comment kosong</p>
-                )}
-              </div>
-            </div>
-          </div>
+          <PostDetails selectedPost={selectedPost} closePopup={closePopup} />
         )}
       </div>
     </div>
   );
 };
 
-export default AdminDashboard; 
+export default AdminDashboard;
