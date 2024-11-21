@@ -30,64 +30,58 @@ const Navbar = () => {
     <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-4">
       <div className="container mx-auto flex items-center justify-between">
         <h1 className="text-2xl md:text-3xl font-extrabold text-white">
-          <Link to="/Item">Temukan Barang Hilang Anda</Link>
+          <Link to="/Item">Temukan Atau Laporkan Barang Hilang Anda</Link>
         </h1>
         <div className="hidden md:flex items-center justify-center space-x-4 ml-2">
           {user ? (
             <>
-              <h3>
+              <h3 className="border rounded p-2 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
                 <Link
                   to={"/profile/" + user._id}
-                  className="text-white hover:underline hover:bg-white hover:text-blue-500 transition-colors duration-300 p-2 rounded"
                 >
                   Profil
                 </Link>
               </h3>
-              <h3 className="border-l border-gray-300 pl-4">
+              <h3 className="border rounded p-2 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
                 <Link
                   to="/write"
-                  className="text-white hover:underline hover:bg-white hover:text-blue-500 transition-colors duration-300 p-2 rounded"
                 >
                   Buat Laporan
                 </Link>
               </h3>
-              <h3 className="border-l border-gray-300 pl-4">
+              <h3 className="border rounded p-2 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
                 <Link
                   to={"/myposts/" + user._id}
-                  className="text-white hover:underline hover:bg-white hover:text-blue-500 transition-colors duration-300 p-2 rounded"
                 >
                   Laporan Saya
                 </Link>
               </h3>
-              <h3 className="border-l border-gray-300 pl-4">
+              <h3 className="border rounded p-2 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
                 <Link
                   to={"/Item"}
-                  className="text-white hover:underline hover:bg-white hover:text-blue-500 transition-colors duration-300 p-2 rounded"
                 >
                   Daftar Laporan
                 </Link>
               </h3>
               <h3
                 onClick={handleLogout}
-                className="text-white hover:underline hover:bg-white hover:text-blue-500 transition-colors duration-300 p-2 rounded cursor-pointer border-l border-gray-300 pl-4"
+                className="border rounded p-2 text-white hover:underline hover:bg-white hover:text-blue-500 transition-colors duration-300 cursor-pointer"
               >
                 Logout
               </h3>
             </>
           ) : (
             <>
-              <h3>
+              <h3 className="border rounded p-2 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
                 <Link
                   to="/login"
-                  className="text-white hover:underline hover:bg-white hover:text-blue-500 transition-colors duration-300 p-2 rounded"
                 >
                   Login
                 </Link>
               </h3>
-              <h3>
+              <h3 className="border rounded p-2 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
                 <Link
                   to="/register"
-                  className="text-white hover:underline hover:bg-white hover:text-blue-500 transition-colors duration-300 p-2 rounded"
                 >
                   Register
                 </Link>
@@ -101,6 +95,7 @@ const Navbar = () => {
         >
           <p className="cursor-pointer relative">
             <MenuOutlined />
+            
           </p>
           {menu && <Menu />}
         </div>
