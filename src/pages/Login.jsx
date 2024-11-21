@@ -1,63 +1,108 @@
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../component/Footer";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { URL } from "../url";
 import { UserContext } from "../context/UserContext";
+import { MailOutlined, LockOutlined } from '@ant-design/icons';
+import Swal from 'sweetalert2';
+import '../App.css';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/"); 
+    }
+  }, [user, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'Email dan password harus diisi.',
+        showConfirmButton: true,
+        customClass: {
+          confirmButton: 'swal-button'
+        }
+      });
+      return;
+    }
     try {
       const res = await axios.post(URL + "/api/auth/login", { email, password }, { withCredentials: true });
       setUser(res.data);
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Berhasil',
+        showConfirmButton: false,
+        timer: 1500
+      });
       if (res.data.role === "admin") {
         navigate("/admin");
       } else {
         navigate("/item");
       }
     } catch (err) {
-      setError(true);
+      Swal.fire({
+        icon: 'error',
+        title: 'Login Gagal',
+        text: 'Email atau password salah.',
+        showConfirmButton: true,
+        customClass: {
+          confirmButton: 'swal-button'
+        }
+      });
       console.log(err);
     }
   };
 
   return (
     <div className="flex flex-col h-screen bg-gray-100">
-      <header className="p-4  flex justify-between items-center bg-gradient-to-r from-blue-500 to-purple-500">
-        <h1 className="text-lg md:text-3xl pl-20 font-extrabold">
-          <Link to="/">Temukan Barang Hilang Anda</Link>
+      <header className="p-4 flex justify-between items-center bg-gradient-to-r from-blue-500 to-purple-500 mb-4">
+        <h1 className="text-lg md:text-3xl font-extrabold mr-4 pl-0 pr-0 md:pl-20 md:pr-0">
+          <Link to="/"> Temukan atau Laporkan Barang Hilang Anda</Link>
         </h1>
-        <Link to="/register" className="text-white pr-20 hover:underline">Daftar</Link>
+        <Link to="/register" className="text-white hover:underline ml-4 pl-0 pr-0 md:pr-20">Daftar</Link>
       </header>
       <main className="flex-1 flex justify-center items-center">
         <div className="w-full md:w-1/3 p-4 bg-white shadow-md rounded-lg">
           <h1 className="text-2xl font-bold mb-4 text-center">Masukkan Akun Anda</h1>
-          <input
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-2 mb-3 border rounded-lg focus:outline-none"
-            type="text"
-            placeholder="Masukkan Email"
-          />
-          <input
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2 mb-3 border rounded-lg focus:outline-none"
-            type="password"
-            placeholder="Masukkan Password"
-          />
+          <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+          <div className="relative mb-3">
+            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+              <MailOutlined />
+            </span>
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-10 py-2 border rounded-lg focus:outline-none focus:border-black"
+              type="text"
+              placeholder="Masukkan Email"
+            />
+          </div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+          <div className="relative mb-3">
+            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+              <LockOutlined />
+            </span>
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-10 py-2 border rounded-lg focus:outline-none focus:border-black"
+              type="password"
+              placeholder="Masukkan Password"
+            />
+          </div>
           <button
             onClick={handleLogin}
             className="w-full px-4 py-2 text-lg font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-600"
           >
             Login
           </button>
-          {error && <p className="text-red-500 text-sm mt-2">Something went wrong</p>}
           <div className="justify-center flex mt-4">
             <p>Belum memiliki akun?</p>
             <Link to="/register" className="ml-2 text-blue-500 hover:underline">Daftar disini</Link>
