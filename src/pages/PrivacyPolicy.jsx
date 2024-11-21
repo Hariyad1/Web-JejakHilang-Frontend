@@ -1,51 +1,68 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function PrivacyPolicy() {
-    return (
-        <div className="privacy-policy-page">
-            <h1>Kebijakan Privasi</h1>
+const PrivacyPolicy = () => {
+  const navigate = useNavigate();
 
-            <section>
-                <h2>Pendahuluan</h2>
-                <p>Selamat datang di Jejak Hilang. Kami berkomitmen untuk melindungi informasi pribadi Anda dan hak privasi Anda. Jika Anda memiliki pertanyaan atau kekhawatiran tentang kebijakan kami, atau praktik kami terkait informasi pribadi Anda, silakan hubungi kami.</p>
-            </section>
+  useEffect(() => {
+      const isPageReloaded = window.performance.getEntriesByType('navigation').some((nav) => nav.type === 'reload');
+      if (isPageReloaded) {
+          navigate('/');
+      }
+  }, [navigate]);
+  
+  return (
+    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+      <div className="privacy-policy-page px-8 py-16 bg-white max-w-screen-lg mx-auto shadow-lg rounded-lg">
+        <h1 className="text-4xl font-bold mb-8 text-center">Kebijakan Privasi</h1>
 
-            <section>
-                <h2>Informasi yang Kami Kumpulkan</h2>
-                <p>Kami mengumpulkan informasi pribadi yang Anda berikan secara sukarela kepada kami saat mendaftar di situs web, menyatakan minat untuk mendapatkan informasi tentang kami atau produk dan layanan kami, saat berpartisipasi dalam kegiatan di situs web, atau saat menghubungi kami.</p>
-            </section>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Pendahuluan</h2>
+          <p className="text-gray-700">
+            JejakHilang berkomitmen untuk melindungi privasi pengguna kami. Kebijakan privasi ini menjelaskan informasi yang dikumpulkan oleh Jejak Hilang dan bagaimana informasi tersebut digunakan dan dibagikan.
+          </p>
+        </section>
 
-            <section>
-                <h2>Bagaimana Kami Menggunakan Informasi Anda</h2>
-                <p>Kami menggunakan informasi pribadi yang dikumpulkan melalui situs web kami untuk berbagai tujuan bisnis yang dijelaskan di bawah ini. Kami memproses informasi pribadi Anda untuk tujuan ini berdasarkan kepentingan bisnis yang sah, untuk membuat atau melaksanakan kontrak dengan Anda, dengan persetujuan Anda, dan/atau untuk mematuhi kewajiban hukum kami.</p>
-            </section>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Informasi yang Dikumpulkan</h2>
+          <p className="text-gray-700">
+            JejakHilang mengumpulkan informasi yang Anda berikan saat menggunakan situs web, seperti nama, alamat email, dan nomor telepon Anda. Jejak Hilang juga dapat mengumpulkan informasi tentang penggunaan Anda atas situs web, seperti alamat IP dan halaman yang Anda kunjungi.
+          </p>
+        </section>
 
-            <section>
-                <h2>Berbagi Informasi Anda</h2>
-                <p>Kami hanya membagikan informasi dengan persetujuan Anda, untuk mematuhi hukum, untuk menyediakan layanan kepada Anda, untuk melindungi hak Anda, atau untuk memenuhi kewajiban bisnis.</p>
-            </section>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Penggunaan Informasi</h2>
+          <p className="text-gray-700">
+            JejakHilang menggunakan informasi yang dikumpulkan untuk menyediakan dan meningkatkan layanan yang ditawarkan melalui situs web. Jejak Hilang juga dapat menggunakan informasi tersebut untuk berkomunikasi dengan Anda dan memenuhi persyaratan hukum.
+          </p>
+        </section>
 
-            <section>
-                <h2>Keamanan Data</h2>
-                <p>Kami telah menerapkan langkah-langkah keamanan teknis dan organisasi yang sesuai yang dirancang untuk melindungi keamanan informasi pribadi yang kami proses. Namun, harap diingat bahwa kami tidak dapat menjamin bahwa internet itu sendiri 100% aman.</p>
-            </section>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Berbagi Informasi</h2>
+          <p className="text-gray-700">
+            JejakHilang tidak membagikan informasi pribadi Anda dengan pihak ketiga, kecuali jika diwajibkan oleh hukum atau diperlukan untuk menyediakan layanan yang ditawarkan melalui situs web.
+          </p>
+        </section>
 
-            <section>
-                <h2>Hak Privasi Anda</h2>
-                <p>Anda memiliki hak tertentu berdasarkan undang-undang perlindungan data yang berlaku. Ini mungkin termasuk hak untuk mengakses, memperbaiki, atau menghapus data pribadi Anda, atau untuk membatasi atau menolak pemrosesan data pribadi Anda.</p>
-            </section>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Keamanan Data</h2>
+          <p className="text-gray-700">
+            JejakHilang mengambil langkah-langkah yang wajar untuk melindungi informasi yang dikumpulkan dari kehilangan, penyalahgunaan, dan akses yang tidak sah. Namun, tidak ada langkah keamanan yang sempurna dan Jejak Hilang tidak dapat menjamin keamanan informasi Anda.
+          </p>
+        </section>
 
-            <section>
-                <h2>Perubahan pada Kebijakan Ini</h2>
-                <p>Kami dapat memperbarui kebijakan privasi ini dari waktu ke waktu. Versi yang diperbarui akan ditunjukkan dengan tanggal &quot;Diperbarui&quot; yang diperbarui dan versi yang diperbarui akan berlaku segera setelah dapat diakses.</p>
-            </section>
-
-            <section>
-                <h2>Hubungi Kami</h2>
-                <p>Jika Anda memiliki pertanyaan atau komentar tentang kebijakan ini, Anda dapat menghubungi kami di: [Informasi Kontak Anda]</p>
-            </section>
-        </div>
-    );
-}
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Perubahan Kebijakan Privasi</h2>
+          <p className="text-gray-700">
+            JejakHilang berhak untuk mengubah kebijakan privasi ini kapan saja. Penggunaan situs web yang berkelanjutan setelah perubahan dilakukan akan dianggap sebagai penerimaan dari kebijakan privasi yang telah direvisi.
+          </p>
+          <p className="text-gray-700">
+            Dengan menggunakan situs web JejakHilang, Anda menyetujui pengumpulan, penggunaan, dan pembagian informasi Anda sebagaimana dijelaskan dalam kebijakan privasi ini. Jika Anda tidak setuju dengan kebijakan privasi ini, Anda tidak boleh menggunakan situs web ini.
+          </p>
+        </section>
+      </div>
+    </div>
+  );
+};
 
 export default PrivacyPolicy;
