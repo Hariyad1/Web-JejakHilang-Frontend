@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import { IF } from "../url";
+import { TagOutlined, UserOutlined, PhoneOutlined, FileOutlined, CalendarOutlined } from "@ant-design/icons";
+
 
 const HomePostItem = ({ post }) => {
   return (
@@ -15,7 +17,7 @@ const HomePostItem = ({ post }) => {
 
       {/* Content */}
       <div className="flex flex-col w-full md:w-[60%] p-4">
-        <h1 className="text-xl md:text-2xl font-semibold text-gray-800">
+        <h1 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">
           {post.title}
         </h1>
 
@@ -23,33 +25,41 @@ const HomePostItem = ({ post }) => {
           <div className="flex space-x-2 mb-2 md:mb-0">
             {post.categories?.map((c, i) => (
               <div key={i} className="bg-gray-200 rounded-md p-1">
+                <TagOutlined className="mr-2" />
                 {c}
               </div>
             ))}
           </div>
 
           <div className="flex space-x-2">
+            <CalendarOutlined className="mr-2" />
             <p>{new Date(post.updatedAt).toDateString()}</p>
             <p>{new Date(post.updatedAt).toLocaleTimeString()}</p>
           </div>
         </div>
 
         <p className="text-sm text-gray-600 mb-4">
-          {post.desc.slice(0, 200)}{" "}
-          <a href="#" className="text-blue-500 hover:underline">
+          <span>{post.desc.slice(0, 200)} </span>
+          <button
+            onClick={() => window.location.href = '#'}
+            className="text-blue-500 hover:underline bg-transparent border-none cursor-pointer"
+          >
             Baca Selengkapnya
-          </a>
+          </button>
         </p>
 
-        <div className="text-sm font-medium text-gray-800">
+        <div className="text-sm font-medium text-gray-800 flex items-center">
+          <UserOutlined className="mr-2" />
           Posted by: {post.username}
         </div>
-        <div className="text-sm font-medium text-gray-800">
+        <div className="text-sm font-medium text-gray-800 flex items-center">
+          <PhoneOutlined className="mr-2" />
           Contact Number: {post.contactNo}
         </div>
 
         {/* Jenis Laporan */}
         <div className="text-sm font-medium mt-2 p-2 bg-gray-100 rounded-md inline-block max-w-max">
+          <FileOutlined className="mr-2" />
           {post.reportType}
         </div>
       </div>
