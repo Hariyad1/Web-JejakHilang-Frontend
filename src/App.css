@@ -1,0 +1,18 @@
+/* customStyles.css */
+.swal-button {
+    background-color: #3b82f6 !important;
+    color: white;
+    border-radius: 0.375rem;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .swal-button:hover {
+    background-color: #2563eb !important;
+  }
+  
+  .popup-container {
+    position: relative;
+    z-index: 1000;
+  }
