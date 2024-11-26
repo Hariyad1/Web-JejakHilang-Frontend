@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
+import Navbar from '../component/Navbar';
+import Footer from '../component/Footer';
 
 const TentangKami = () => {
   const navigate = useNavigate();
@@ -12,7 +15,7 @@ const TentangKami = () => {
   }, [navigate]);
 
   return (
-    <div className="w-full md:w-1/2 mb-8 md:mb-0">
+    <div className="w-full md:w-3/5 mb-8 md:mb-0">
       <h2 className="text-2xl font-bold text-gray-500 mb-2 text-center">TENTANG KAMI</h2>
       <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
         Membantu Anda Menemukan Barang yang Hilang dengan Cepat dan Efektif.
@@ -25,32 +28,33 @@ const TentangKami = () => {
         Kami percaya bahwa setiap barang berharga dan layak untuk ditemukan kembali. 
         Bergabunglah dengan kami untuk pengalaman pencarian yang lebih baik.
       </p>
-      <button className="px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-300">
-        Daftar Sekarang
-      </button>
     </div>
   );
 };
 
 const OurTeam = () => {
   return (
-    <div className="w-full text-center mt-32">
-      <h2 className="text-3xl font-bold mb-4">Our Team</h2>
-      <p className="text-gray-600 mb-8">
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <div className="w-full text-center mt-8">
+      <h2 className="text-3xl font-bold mb-4">Tim Kami</h2>
+      <p className="text-gray-600 text-lg mb-8">
+        Tim kami terdiri dari para profesional berdedikasi yang berkomitmen untuk memberikan layanan terbaik. 
+        Dengan keahlian dan pengalaman yang luas, kami bekerja sama untuk mencapai tujuan bersama dan memberikan solusi inovatif bagi pengguna kami.
       </p>
       <div className="flex flex-wrap justify-center">
         {[
-          { name: "p", role: "p", img: "path/to/image1.jpg" },
-          { name: "p", role: "p", img: "path/to/image2.jpg" },
+          { name: "Hariyadi", role: "Fullstack Developer", img: "hariyadi.svg" },
+          { name: "Keivin Immanuel Akta Purba", role: "Frontend Developer", img: "keivin.svg" },
         ].map((member, index) => (
           <div key={index} className="w-full md:w-1/4 p-4">
             <img src={member.img} alt={member.name} className="rounded-full mx-auto mb-4" />
             <h3 className="text-xl font-bold">{member.name}</h3>
             <p className="text-gray-500 mb-2">{member.role}</p>
             <p className="text-gray-600 mb-4">
-              Glavi amet ritnisi libero molestie ante ut fringilla purus eros quis glavrid from dolor amet iquam lorem bibendum
+              {member.name === "Hariyadi" ? (
+                "Sebagai pengembang Fullstack, Dalam project ini saya bertanggung jawab untuk merancang dan mengimplementasikan solusi teknis yang inovatif, memastikan integrasi yang mulus antara frontend dan backend."
+              ) : (
+                "Sebagai pengembang Frontend, Dalam project ini saya fokus pada desain antarmuka pengguna yang responsif, serta memastikan pengalaman pengguna yang optimal di berbagai perangkat."
+              )}
             </p>
             <div className="flex justify-center space-x-4">
               <a href="#" className="text-blue-500"><i className="fab fa-facebook"></i></a>
@@ -65,20 +69,26 @@ const OurTeam = () => {
 };
 
 const TentangKamiPage = () => {
+  const { theme } = useTheme();
+
   return (
-    <div className="flex flex-col items-center justify-between px-8 py-16 bg-white">
-      <div className="flex flex-col md:flex-row items-center justify-between w-full">
-        <TentangKami />
-        <div className="w-full md:w-1/2 flex justify-center">
-          <img
-            src="imges/about.svg"
-            alt="Jejak Hilang"
-            style={{ width: '500px', height: '500px' }}
-            className="transform transition duration-500 hover:scale-105"
-          />
+    <div>
+      <Navbar />
+      <div className={`flex flex-col items-center justify-between px-8 py-16 ${theme}`}>
+        <div className="flex flex-col md:flex-row items-center justify-between w-full">
+          <TentangKami />
+          <div className="w-full md:w-2/5 flex justify-center">
+            <img
+              src="imges/about.svg"
+              alt="Jejak Hilang"
+              style={{ width: '500px', height: '500px' }}
+              className="transform transition duration-500 hover:scale-105"
+            />
+          </div>
         </div>
+        <OurTeam />
       </div>
-      <OurTeam />
+      <Footer />
     </div>
   );
 };

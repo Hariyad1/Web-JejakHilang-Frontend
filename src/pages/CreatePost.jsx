@@ -3,9 +3,10 @@ import { UserContext } from '../context/UserContext';
 import Footer from "../component/Footer";
 import Navbar from "../component/Navbar";
 import { ImCross } from 'react-icons/im';
-import { URL } from '../url';
+import { IF, URL } from '../url';
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 
 function validateContactNo(contactNo) {
   const contactNoPattern = /^\+?[0-9]{9,15}$/;
@@ -22,6 +23,7 @@ const CreatePost = () => {
   const [cats, setCats] = useState([]);
   const navigate = useNavigate();
   const [reportType, setReportType] = useState("");
+  const { theme } = useTheme();
 
   const deleteCategory = (i) => {
     let updatedCats = [...cats];
@@ -51,7 +53,6 @@ const CreatePost = () => {
       reportType,
     };
 
-    // Image upload
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
@@ -64,14 +65,12 @@ const CreatePost = () => {
           }
         });
 
-        // Simpan URL yang dikembalikan oleh ImageKit
-        post.photo = imgUpload.data.url; // Pastikan ini adalah path yang benar dari response
+        post.photo = imgUpload.data.url;
       } catch (err) {
         console.log(err);
       }
     }
 
-    // Post upload
     try {
       if (!validateContactNo(contactno)) {
         throw new Error('Please enter a valid contact number');
@@ -84,17 +83,17 @@ const CreatePost = () => {
   };
 
   return (
-    <div className=" bg-gray-100 " >
+    <div className={`min-h-screen ${theme}`}>
       <Navbar />
-      <div className="px-8 md:px-64 mt-8 w-full">
+      <div className="px-8 md:px-64 mt-8 mb-8 w-full">
         <h1 className="font-bold text-2xl md:text-3xl mt-8 text-center">Buat Laporan</h1>
         <form className="w-full mt-4 space-y-4 md:space-y-8">
           <div>
             <h2 className="font-semibold mb-2">Judul Laporan:</h2>
             <input
               onChange={(e) => setTitle(e.target.value)}
-            type="text"
-            className="px-4 py-2 outline-none w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              type="text"
+              className="px-4 py-2 outline-none w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
               placeholder="Masukkan Judul Laporan"
             />
           </div>
@@ -157,7 +156,7 @@ const CreatePost = () => {
             <input
               onChange={(e) => setContactNo(e.target.value)}
               type="text"
-            className="px-4 py-2 outline-none w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="px-4 py-2 outline-none w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
               placeholder="Masukkan Nomor Kontak"
             />
           </div>

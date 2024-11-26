@@ -4,16 +4,19 @@ import Navbar from "../component/Navbar"
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../context/UserContext"
 import axios from "axios"
-import { URL } from "../url"
+import { IF, URL } from "../url"
 import HomePostItem from "../component/HomePostItem"
 import Loader from "../component/Loader"
 import { SearchOutlined } from "@ant-design/icons";
+import { useTheme } from '../context/ThemeContext';
+
 const MyPosts = () => {
   const { search } = useLocation()
   const [posts, setPosts] = useState([])
   const [noResults, setNoResults] = useState(false)
   const [loader, setLoader] = useState(false)
   const { user } = useContext(UserContext)
+  const { theme } = useTheme();
 
   // State untuk pencarian, paginasi, dan jumlah entitas
   const [searchTerm, setSearchTerm] = useState("")
@@ -73,10 +76,10 @@ const MyPosts = () => {
   }, [searchTerm, selectedTab]);
 
   return (
-    <div>
+    <div className={`min-h-screen ${theme}`}>
       <Navbar />
-      <div className="px-8 md:px-[200px] min-h-[80vh] mt-4">
-        <h1 className="text-2xl font-bold mb-4 text-center bg-blue-100 p-2 rounded-md">
+      <div className="px-8 md:px-[200px] min-h-[80vh] mt-8 mb-8">
+        <h1 className="text-2xl font-bold mb-4 text-center bg-blue-100 p-2 rounded-md" style={{ color: 'black' }}>
           Laporan Saya
         </h1>
         <div className="flex flex-col lg:flex-row justify-between items-center mb-4">

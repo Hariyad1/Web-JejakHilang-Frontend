@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import axios from "axios"
 import { MdDelete } from "react-icons/md"
-import { UserOutlined, CommentOutlined } from "@ant-design/icons"
+import { UserOutlined, CommentOutlined, CalendarOutlined } from "@ant-design/icons"
 import { URL } from "../url"
 import { useContext } from "react"
 import { UserContext } from "../context/UserContext"
@@ -18,10 +18,7 @@ const Comment = ({c,comments,setComments}) => {
       console.log(err)
     }
   }
-  // console.log(post.userId)
-  // console.log(user._id)
-  // console.log(post)
-  // console.log(user)
+
   return (
     <div className="w-full md:w-[75%] px-2 py-2 bg-gray-200 rounded-lg my-2 relative">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
@@ -30,7 +27,10 @@ const Comment = ({c,comments,setComments}) => {
           <h3 className="font-bold text-gray-600">@{c.author}</h3>
         </div>
         <div className="flex items-center space-x-4 mt-2 md:mt-0">
-          <p className="text-gray-500 text-sm">{new Date(c.updatedAt).toString().slice(0, 15)}</p>
+          <p className="text-gray-500 text-sm">
+            <CalendarOutlined className="mr-2" />
+            {new Date(c.updatedAt).toString().slice(0, 15)}
+          </p>
           {user?._id === c?.userId && (
             <p className="cursor-pointer text-red-600 md:ml-2 absolute top-2 right-2 mt-0 md:static md:mr-0" onClick={() => deleteComment(c._id)}>
               <MdDelete />

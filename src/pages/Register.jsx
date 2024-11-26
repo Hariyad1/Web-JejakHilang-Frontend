@@ -6,6 +6,8 @@ import { URL } from "../url";
 import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2';
 import { UserContext } from "../context/UserContext";
+import ThemeToggle from '../component/ThemeToggle';
+import { useTheme } from '../context/ThemeContext';
 import '../App.css';
 
 const Register = () => {
@@ -15,6 +17,7 @@ const Register = () => {
   const [error, setError] = useState(false);
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (user) {
@@ -69,17 +72,20 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100">
-      <header className="p-4 flex justify-between items-center bg-gradient-to-r from-blue-500 to-purple-500 mb-4">
-      <h1 className="text-lg md:text-3xl font-extrabold mr-4 pl-0 pr-0 md:pl-20 md:pr-0">
+    <div className={`flex flex-col h-screen ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-100'}`}>
+      <header className="p-4 flex justify-between items-center bg-gradient-to-r from-blue-500 to-purple-500 mb-8">
+        <h1 className="text-lg md:text-3xl font-extrabold mr-4 pl-0 pr-0 md:pl-20 md:pr-0">
           <Link to="/"> Temukan atau Laporkan Barang Hilang Anda</Link>
         </h1>
-        <Link to="/login" className="text-white hover:underline ml-4 pl-0 pr-0 md:pr-20">Masuk</Link>
+        <div className="flex items-center">
+          <ThemeToggle />
+          <Link to="/login" className="text-white hover:underline ml-4 pl-0 pr-0 md:pr-20">Masuk</Link>
+        </div>
       </header>
-      <main className="flex-1 flex justify-center items-center">
-        <div className="w-full md:w-1/3 p-4 bg-white shadow-md rounded-lg">
+      <main className="flex-1 flex justify-center items-center mb-8">
+        <div className={`w-full md:w-1/3 p-4 ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white'} shadow-md rounded-lg`}>
           <h1 className="text-2xl font-bold mb-4 text-center">Daftarkan Akun Anda</h1>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Username</label>
+          <label className="block text-sm font-medium mb-2">Username</label>
           <div className="relative mb-3">
             <span className="absolute top-2/4 transform -translate-y-2/4 left-0 flex items-center pl-3 pointer-events-none">
               <UserOutlined className="text-gray-400" />
@@ -91,7 +97,7 @@ const Register = () => {
               placeholder="Masukkan Username"
             />
           </div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+          <label className="block text-sm font-medium mb-2">Email</label>
           <div className="relative mb-3">
             <span className="absolute top-2/4 transform -translate-y-2/4 left-0 flex items-center pl-3 pointer-events-none">
               <MailOutlined className="text-gray-400" />
@@ -103,7 +109,7 @@ const Register = () => {
               placeholder="Masukkan Email"
             />
           </div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+          <label className="block text-sm font-medium mb-2">Password</label>
           <div className="relative mb-3">
             <span className="absolute top-2/4 transform -translate-y-2/4 left-0 flex items-center pl-3 pointer-events-none">
               <LockOutlined className="text-gray-400" />

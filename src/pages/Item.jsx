@@ -2,7 +2,7 @@ import axios from "axios"
 import Footer from "../component/Footer"
 import HomePostItem from "../component/HomePostItem"
 import Navbar from "../component/Navbar"
-import { URL } from "../url"
+import { IF, URL } from "../url"
 import { useContext, useEffect, useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loader from '../component/Loader'
@@ -17,7 +17,6 @@ const Item = () => {
   const { user } = useContext(UserContext)
   const navigate = useNavigate()
 
-  // State untuk pencarian, paginasi, jumlah entitas, dan tab
   const [searchTerm, setSearchTerm] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
   const [entriesPerPage, setEntriesPerPage] = useState(5)
@@ -48,33 +47,29 @@ const Item = () => {
     fetchPosts()
   }, [search])
 
-  // Filter posts berdasarkan searchTerm dan selectedTab
   const filteredPosts = posts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesTab = selectedTab === "all" || post.reportType === selectedTab
     return matchesSearch && matchesTab
   })
 
-  // Hitung total halaman
   const totalPages = Math.ceil(filteredPosts.length / entriesPerPage)
 
-  // Ambil posts untuk halaman saat ini
   const currentPosts = filteredPosts.slice(
     (currentPage - 1) * entriesPerPage,
     currentPage * entriesPerPage
   )
 
-  // Fungsi untuk mengubah tab
   const handleTabChange = (tab) => {
     setSelectedTab(tab)
-    setCurrentPage(1) // Reset halaman ke 1 saat tab berubah
+    setCurrentPage(1)
   }
 
   return (
     <>
       <Navbar />
-      <div className="px-8 md:px-[200px] min-h-[80vh] mt-4">
-        <h1 className="text-2xl font-bold mb-4 text-center bg-blue-100 p-2 rounded-md">
+      <div className="px-8 md:px-[200px] min-h-[80vh] mt-8 mb-8">
+        <h1 className="text-2xl font-bold mb-4 text-center bg-blue-100 p-2 rounded-md" style={{ color: 'black' }}>
           Daftar Laporan
         </h1>
         <div className="flex flex-col lg:flex-row justify-between items-center mb-4">
@@ -90,7 +85,6 @@ const Item = () => {
               />
             </div>
           </div>
-          {/* Tab Navigasi */}
           <div className="flex items-center mb-4 w-full lg:w-auto md:mt-4">
             <h2 className="text-xl font-bold mb-2 text-left mr-4">Filter:</h2>
             <select

@@ -6,10 +6,11 @@ import { BiEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { UserOutlined, PhoneOutlined, TagOutlined, FileOutlined, CalendarOutlined } from "@ant-design/icons";
 import axios from "axios";
-import { URL, IF } from "../url";
+import { IF, URL } from "../url";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import Loader from "../component/Loader";
+import { useTheme } from '../context/ThemeContext';
 
 const PostDetailsItem = () => {
   const postId = useParams().id;
@@ -19,6 +20,7 @@ const PostDetailsItem = () => {
   const [comment, setComment] = useState("");
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   const fetchPost = async () => {
     try {
@@ -76,14 +78,14 @@ const PostDetailsItem = () => {
   };
 
   return (
-    <div>
+    <div className={`min-h-screen ${theme}`}>
       <Navbar />
       {loader ? (
         <div className="h-[80vh] flex justify-center items-center w-full">
           <Loader />
         </div>
       ) : (
-        <div className="px-8 md:px-64 mt-8">
+        <div className="px-8 md:px-64 mt-8 mb-8">
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-blue-600 md:text-3xl">{post.title}</h1>
             {user?._id === post?.userId && (
@@ -110,18 +112,22 @@ const PostDetailsItem = () => {
             <img src={post.photo} className="w-full max-w-[500px] h-auto mt-4" alt="Post Image" />
           </div>
           <div className="flex items-center mt-8 space-x-4 font-semibold">
-            <p className="text-green-600">Kategori:</p>
-            <div className="flex justify-center items-center space-x-2">
-              {post.categories?.map((c, i) => (
-                <div
-                  key={i}
-                  className="bg-yellow-300 rounded-lg px-3 py-1 text-yellow-800"
-                >
-                  <TagOutlined className="mr-2" />
-                  {c}
+            {post.categories && post.categories.length > 0 && (
+              <>
+                <p className="text-green-600">Kategori:</p>
+                <div className="flex justify-center items-center space-x-2">
+                  {post.categories.map((c, i) => (
+                    <div
+                      key={i}
+                      className="bg-yellow-300 rounded-lg px-3 py-1 text-yellow-800"
+                    >
+                      <TagOutlined className="mr-2" />
+                      {c}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </>
+            )}
           </div>
           <div>
             <p className="text-sm md:text-lg text-gray-700 mt-6 mb-4">{post.desc}</p>
@@ -146,7 +152,6 @@ const PostDetailsItem = () => {
               <Comment key={c._id} c={c} comments={comments} setComments={setComments} />
             ))}
           </div>
-          {/* Write a comment */}
           <div className="w-full md:w-[75%] flex flex-col mt-4 md:flex-row">
             <input
               onChange={(e) => setComment(e.target.value)}

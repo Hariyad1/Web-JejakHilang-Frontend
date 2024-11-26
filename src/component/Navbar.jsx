@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import Menu from "./Menu";
@@ -5,12 +6,15 @@ import { UserContext } from "../context/UserContext";
 import axios from "axios";
 import { URL } from "../url";
 import { MenuOutlined } from "@ant-design/icons";
+import { useTheme } from '../context/ThemeContext';
+import { FaSun, FaMoon } from 'react-icons/fa';
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
   const path = useLocation().pathname;
   const { user, setUser } = useContext(UserContext);
+  const { theme, toggleTheme } = useTheme();
 
   const showMenu = () => {
     setMenu(!menu);
@@ -27,45 +31,31 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-4">
+    <div className={`bg-gradient-to-r from-blue-500 to-purple-500 p-4 ${theme}`}>
       <div className="container mx-auto flex items-center justify-between">
-        <h1 className="text-2xl md:text-3xl font-extrabold text-white">
-          <Link to="/Item">Temukan Atau Laporkan Barang Hilang Anda</Link>
-        </h1>
-        <div className="hidden md:flex items-center justify-center space-x-4 ml-2">
+        <div className="flex items-center space-x-4">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-white">
+            Temukan atau Laporkan Barang Hilang Anda
+          </h1>
+        </div>
+        <div className="hidden md:flex items-center justify-center space-x-4 ml-16">
           {user ? (
             <>
-              <h3 className="border rounded p-2 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
-                <Link
-                  to={"/profile/" + user._id}
-                >
-                  Profil
-                </Link>
+              <h3 className="border rounded p-1 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
+                <Link to={"/profile/" + user._id}>Profil</Link>
               </h3>
-              <h3 className="border rounded p-2 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
-                <Link
-                  to="/write"
-                >
-                  Buat Laporan
-                </Link>
+              <h3 className="border rounded p-1 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
+                <Link to="/write">Buat Laporan</Link>
               </h3>
-              <h3 className="border rounded p-2 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
-                <Link
-                  to={"/myposts/" + user._id}
-                >
-                  Laporan Saya
-                </Link>
+              <h3 className="border rounded p-1 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
+                <Link to={"/myposts/" + user._id}>Laporan Saya</Link>
               </h3>
-              <h3 className="border rounded p-2 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
-                <Link
-                  to={"/Item"}
-                >
-                  Daftar Laporan
-                </Link>
+              <h3 className="border rounded p-1 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
+                <Link to={"/Item"}>Daftar Laporan</Link>
               </h3>
               <h3
                 onClick={handleLogout}
-                className="border rounded p-2 text-white hover:underline hover:bg-white hover:text-blue-500 transition-colors duration-300 cursor-pointer"
+                className="border rounded p-1 text-white hover:underline hover:bg-white hover:text-blue-500 transition-colors duration-300 cursor-pointer ml-2"
               >
                 Logout
               </h3>
@@ -73,31 +63,30 @@ const Navbar = () => {
           ) : (
             <>
               <h3 className="border rounded p-2 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
-                <Link
-                  to="/login"
-                >
-                  Login
-                </Link>
+                <Link to="/login">Login</Link>
               </h3>
-              <h3 className="border rounded p-2 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
-                <Link
-                  to="/register"
-                >
-                  Register
-                </Link>
+              <h3 className="border rounded p-2 bg-blue-600 text-white hover:underline hover:bg-blue-800 hover:text-blue-500 transition-colors duration-300">
+                <Link to="/register">Register</Link>
               </h3>
             </>
           )}
         </div>
-        <div
-          onClick={showMenu}
-          className="md:hidden text-2xl cursor-pointer text-white ml-2"
-        >
-          <p className="cursor-pointer relative">
-            <MenuOutlined />
-            
-          </p>
-          {menu && <Menu />}
+        <div className="flex flex-col md:flex-row items-center">
+          <button
+            onClick={toggleTheme}
+            className="border rounded p-2 text-white hover:underline hover:bg-white hover:text-blue-500 transition-colors duration-300 flex items-center mb-2 md:mb-0 md:ml-4"
+          >
+            {theme === 'light' ? <FaMoon /> : <FaSun />}
+          </button>
+          <div
+            onClick={showMenu}
+            className="md:hidden text-2xl cursor-pointer text-white relative"
+          >
+            <p className="cursor-pointer relative">
+              <MenuOutlined />
+            </p>
+            {menu && <Menu />}
+          </div>
         </div>
       </div>
     </div>

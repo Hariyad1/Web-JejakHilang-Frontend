@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../component/Navbar';
+import Footer from '../component/Footer';
 
 function Service() {
     const navigate = useNavigate();
@@ -12,8 +14,10 @@ function Service() {
     }, [navigate]);
 
     return (
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-        <div className="service-page px-8 py-16 bg-white max-w-screen-lg mx-auto">
+        <div>
+            <Navbar />
+            <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+                <div className="service-page px-8 py-16 bg-white max-w-screen-lg mx-auto">
             <h1 className="text-4xl font-bold mb-8">Layanan Kami</h1>
             <p className="text-gray-700 mb-8">
                 Selamat datang di halaman layanan Jejak Hilang. Kami menyediakan berbagai layanan untuk membantu Anda menemukan jejak yang hilang.
@@ -23,19 +27,19 @@ function Service() {
                 <div>
                     <h2 className="text-2xl font-semibold mb-2">Pelaporan</h2>
                     <p className="text-gray-700">
-                        Kami menyediakan layanan untuk membuat laporan guna membantu menemukan barang yang hilang.
+                        Kami menyediakan layanan untuk pengguna membuat laporan guna membantu menemukan barang yang hilang.
                     </p>
                 </div>
                 <div>
                     <h2 className="text-2xl font-semibold mb-2">Pencarian</h2>
                     <p className="text-gray-700">
-                        Kami menyediakan layanan pencarian terperinci guna membantu menemukan barang yang hilang.
+                        Kami menyediakan layanan pencarian terperinci guna membantu pengguna menemukan barang yang hilang.
                     </p>
                 </div>
                 <div>
                     <h2 className="text-2xl font-semibold mb-2">Pemantauan</h2>
                     <p className="text-gray-700">
-                        Tim kami melakukan pemantauan secara berkala untuk memastikan informasi yang akurat dan terkini.
+                        Tim kami melakukan pemantauan secara berkala untuk memastikan informasi yang akurat dan terkini melalui web admin.
                     </p>
                 </div>
                 <div>
@@ -44,9 +48,11 @@ function Service() {
                         Kami siap membantu Anda kapan saja dengan dukungan penuh selama 24 jam sehari.
                     </p>
                 </div>
+                    </div>
+                </div>
             </div>
+            <Footer />
         </div>
-    </div>
     );
 }
 

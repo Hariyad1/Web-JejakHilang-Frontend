@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../component/Navbar';
+import Footer from '../component/Footer';
 
 const PrivacyPolicy = () => {
   const navigate = useNavigate();
@@ -12,10 +14,11 @@ const PrivacyPolicy = () => {
   }, [navigate]);
   
   return (
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-      <div className="privacy-policy-page px-8 py-16 bg-white max-w-screen-lg mx-auto shadow-lg rounded-lg">
+    <div>
+        <Navbar />
+        <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+            <div className="privacy-policy-page px-8 py-16 bg-white max-w-screen-lg mx-auto shadow-lg rounded-lg">
         <h1 className="text-4xl font-bold mb-8 text-center">Kebijakan Privasi</h1>
-
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">Pendahuluan</h2>
           <p className="text-gray-700">
@@ -59,10 +62,12 @@ const PrivacyPolicy = () => {
           <p className="text-gray-700">
             Dengan menggunakan situs web JejakHilang, Anda menyetujui pengumpulan, penggunaan, dan pembagian informasi Anda sebagaimana dijelaskan dalam kebijakan privasi ini. Jika Anda tidak setuju dengan kebijakan privasi ini, Anda tidak boleh menggunakan situs web ini.
           </p>
-        </section>
-      </div>
+            </section>
+            </div>
+        </div>
+        <Footer />
     </div>
   );
-};
+};  
 
 export default PrivacyPolicy;

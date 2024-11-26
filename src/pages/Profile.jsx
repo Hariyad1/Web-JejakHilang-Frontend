@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import Footer from "../component/Footer";
 import Navbar from "../component/Navbar";
-import ProfilePosts from "../component/ProfilePosts";
 import axios from "axios";
 import { IF, URL } from "../url";
 import { UserContext } from "../context/UserContext";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { UserOutlined, MailOutlined, EyeOutlined } from "@ant-design/icons";
 import { Table } from "antd";
+import { useTheme } from '../context/ThemeContext';
 
 const Profile = () => {
   const param = useParams().id;
@@ -18,6 +18,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [updated, setUpdated] = useState(false);
+  const { theme } = useTheme();
 
   const [pagination, setPagination] = useState({
     current: 1,
@@ -154,9 +155,9 @@ const Profile = () => {
   ];
 
   return (
-    <div className="bg-gray-100">
+    <div className={`min-h-screen ${theme}`}>
       <Navbar />
-      <div className="min-h-screen px-4 md:px-8 md:space-x-8 mt-8 flex mx-0 md:mx-2 lg:mx-32 flex-col md:flex-row z-10">
+      <div className="px-4 md:px-8 md:space-x-8 mt-8 mb-8 flex mx-0 md:mx-2 lg:mx-32 flex-col md:flex-row z-10">
         <div className="md:w-[70%] w-full md:mt-0 mb-8 md:mb-0">
           <h1 className="text-2xl md:text-3xl font-bold mb-4">Your Posts:</h1>
           <Table
@@ -173,7 +174,7 @@ const Profile = () => {
           />
         </div>
         <div className="md:sticky md:top-12 md:w-[30%] w-full md:items-end">
-          <div className="flex flex-col space-y-4 items-start p-4 bg-white rounded-lg shadow-md">
+          <div className={`flex flex-col space-y-4 items-start p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
             <h1 className="text-2xl font-bold mb-4">Profile</h1>
             <div className="flex items-center space-x-2">
               <UserOutlined />

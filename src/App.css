@@ -1,18 +1,215 @@
 /* customStyles.css */
 .swal-button {
-    background-color: #3b82f6 !important;
-    color: white;
-    border-radius: 0.375rem;
-    padding: 0.5rem 1rem;
-    font-weight: bold;
-    transition: background-color 0.3s;
-  }
-  
-  .swal-button:hover {
-    background-color: #2563eb !important;
-  }
-  
-  .popup-container {
-    position: relative;
-    z-index: 1000;
-  }
+  background-color: #3b82f6 !important;
+  color: white;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.swal-button:hover {
+  background-color: #2563eb !important;
+}
+
+.custom-swal-button {
+  background-color: #4CAF50 !important;
+  color: white !important;
+  font-weight: bold !important;
+  border-radius: 5px !important;
+}
+
+.popup-container {
+  position: relative;
+  z-index: 1000;
+}
+
+.light {
+  background-color: #f7f7f7;
+  color: #000;
+}
+
+.dark {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.dark .bg-white {
+  background-color: #2d2d2d;
+}
+
+.dark .text-black {
+  color: #fff;
+}
+
+.dark .border-gray-300 {
+  border-color: #555;
+}
+
+.dark .hover\:bg-gray-100:hover {
+  background-color: #333;
+}
+
+.dark .bg-blue-500 {
+  background-color: #0056b3;
+}
+
+.dark .hover\:bg-blue-600:hover {
+  background-color: #004494;
+}
+
+.dark .bg-red-500 {
+  background-color: #b30000;
+}
+
+.dark .hover\:bg-red-600:hover {
+  background-color: #940000;
+}
+
+.light input {
+  color: black;
+}
+
+.dark input, .dark textarea, .dark select, .dark button {
+  color: white;
+  background-color: #333;
+  border-color: #555;
+}
+
+.light .ant-table {
+  background-color: white;
+  color: black;
+}
+
+.dark .ant-table {
+  background-color: #2d2d2d !important;
+  color: white !important;
+}
+
+.dark .ant-table-thead > tr > th {
+  background-color: #3a3a3a !important;
+  color: white !important;
+}
+
+.dark .ant-table-tbody > tr > td {
+  border-color: #444;
+}
+
+.dark .ant-table-tbody > tr:hover > td {
+  background-color: #444 !important;
+}
+
+.dark .ant-table-tbody > tr:active > td {
+  background-color: #555 !important;
+}
+
+.dark .ant-pagination-item {
+  background-color: #444;
+  border-color: #666;
+}
+
+.dark .ant-pagination-item a {
+  color: #ffffff;
+}
+
+.dark .ant-pagination-item-active {
+  background-color: #555;
+  border-color: #777;
+}
+
+.dark .ant-pagination-item-active a {
+  color: #ffffff;
+}
+
+.dark .ant-pagination-prev, .dark .ant-pagination-next {
+  background-color: #444;
+  border-color: #666;
+}
+
+.dark .ant-pagination-prev a, .dark .ant-pagination-next a {
+  color: #ffffff;
+}
+
+.dark .ant-select-selector {
+  background-color: #444;
+  border-color: #666;
+  color: #000000;
+}
+
+.dark .ant-select-arrow {
+  color: #ffffff;
+}
+
+.dark .ant-pagination-total-text {
+  color: #ffffff;
+}
+
+.dark .ant-select-dropdown {
+  background-color: #333;
+  color: #fff;
+}
+
+.dark .ant-select-item-option {
+  background-color: #333;
+  color: #fff;
+}
+
+.dark .ant-select-item-option-active {
+  background-color: #444;
+}
+
+.dark .text-gray-800 {
+  color: #ffffff;
+}
+
+.dark .text-gray-500 {
+  color: #cccccc;
+}
+
+.dark .text-gray-600, .dark .text-gray-700 {
+  color: #cccccc;
+}
+
+.dark .bg-gray-200 {
+  background-color: #444444;
+}
+
+.dark .bg-gray-100 {
+  background-color: #333333;
+}
+
+.dark .bg-yellow-300 {
+  background-color: #555555;
+}
+
+.dark .text-yellow-800 {
+  color: #dddddd;
+}
+
+.dark .bg-blue-600 {
+  background-color: #0056b3;
+}
+
+.dark .hover\:bg-blue-400:hover {
+  background-color: #004494;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.dark-mode .ant-table-column-sort {
+  background-color: #2b2b2b !important;
+  color: #ffffff !important;
+}
+
+.dark-mode .ant-btn-danger {
+  background-color: #ff4d4f;
+  border-color: #ff4d4f;
+  color: white;
+}

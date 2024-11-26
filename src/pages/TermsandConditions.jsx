@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../component/Navbar';
+import Footer from '../component/Footer';
 
 function TermsAndConditions() {
     const navigate = useNavigate();
@@ -12,8 +14,10 @@ function TermsAndConditions() {
     }, [navigate]);
 
     return (
-        <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-        <div className="terms-and-conditions-page px-8 py-16 bg-white max-w-screen-lg mx-auto">
+        <div>
+            <Navbar />
+            <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+                <div className="terms-and-conditions-page px-8 py-16 bg-white max-w-screen-lg mx-auto">
             <h1 className="text-4xl font-bold mb-8 text-center">Syarat & Ketentuan</h1>
 
             <section className="mb-8">
@@ -62,10 +66,12 @@ function TermsAndConditions() {
                 <h2 className="text-2xl font-semibold mb-4">Hukum yang Berlaku</h2>
                 <p className="text-gray-700">
                     Dengan menggunakan situs web JejakHilang, Anda setuju untuk terikat dengan syarat dan ketentuan ini. Jika Anda tidak setuju dengan syarat dan ketentuan ini, Anda tidak boleh menggunakan situs web ini.
-                </p>
-            </section>
+                    </p>
+                </section>
+                </div>
+            </div>
+            <Footer />
         </div>
-    </div>
     );
 }
 
