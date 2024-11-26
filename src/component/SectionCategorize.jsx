@@ -10,7 +10,7 @@ const SectionCatagorize = () => {
         showThumbs={false}
         infiniteLoop
         interval={5000}
-        transitionTime={500}
+        transitionTime={400}
         stopOnHover
       >
         <div>

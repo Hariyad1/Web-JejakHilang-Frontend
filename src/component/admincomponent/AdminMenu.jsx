@@ -11,7 +11,7 @@ const AdminMenu = ({ setView, setMenuOpen }) => {
 
   return (
     <div
-      className="fixed top-16 md:ml-16 lg:ml-64 bg-black text-white p-2 rounded-lg shadow-lg inline-block"
+      className="absolute top-full left-0 bg-black text-white p-2 rounded-lg shadow-lg inline-block"
       style={{ zIndex: 1000 }}
     >
       <ul>
@@ -22,7 +22,7 @@ const AdminMenu = ({ setView, setMenuOpen }) => {
             style={{ margin: '4px' }}
             icon={<FileTextOutlined />}
           >
-            Management Posts
+            Post Management
           </Button>
         </li>
         <li className="mb-2">
@@ -32,7 +32,7 @@ const AdminMenu = ({ setView, setMenuOpen }) => {
             style={{ margin: '4px' }}
             icon={<UserOutlined />}
           >
-            Management User
+            User Management
           </Button>
         </li>
       </ul>
