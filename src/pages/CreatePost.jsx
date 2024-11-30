@@ -7,6 +7,8 @@ import { IF, URL } from '../url';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import Swal from 'sweetalert2';
+import '../App.css';
 
 function validateContactNo(contactNo) {
   const contactNoPattern = /^\+?[0-9]{9,15}$/;
@@ -43,6 +45,67 @@ const CreatePost = () => {
 
   const handleCreate = async (e) => {
     e.preventDefault();
+
+    if (title.trim().length < 5) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Judul tidak valid',
+        text: 'Judul harus memiliki setidaknya 5 karakter.',
+        customClass: {
+          confirmButton: 'swal-button'
+        }
+      });
+      return;
+    }
+
+    if (cats.length > 2) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Terlalu Banyak Kategori',
+        text: 'Anda hanya dapat memilih hingga 2 kategori.',
+        customClass: {
+          confirmButton: 'swal-button'
+        }
+      });
+      return;
+    }
+
+    if (desc.trim().length < 25) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Deskripsi tidak valid',
+        text: 'Deskripsi harus memiliki setidaknya 25 karakter.',
+        customClass: {
+          confirmButton: 'swal-button'
+        }
+      });
+      return;
+    }
+
+    if (!validateContactNo(contactno)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Nomor Kontak tidak valid',
+        text: 'Silakan masukkan nomor kontak yang valid.',
+        customClass: {
+          confirmButton: 'swal-button'
+        }
+      });
+      return;
+    }
+
+    if (!reportType) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Jenis Laporan Diperlukan',
+        text: 'Silakan pilih jenis laporan.',
+        customClass: {
+          confirmButton: 'swal-button'
+        }
+      });
+      return;
+    }
+
     const post = {
       title,
       desc,
@@ -72,9 +135,6 @@ const CreatePost = () => {
     }
 
     try {
-      if (!validateContactNo(contactno)) {
-        throw new Error('Please enter a valid contact number');
-      }
       const res = await axios.post(URL + "/api/posts/create", post, { withCredentials: true });
       navigate("/posts/post/" + res.data._id);
     } catch (err) {
@@ -169,7 +229,7 @@ const CreatePost = () => {
                   value="Penemu"
                   checked={reportType === "Penemu"}
                   onChange={(e) => setReportType(e.target.value)}
-                  className="mr-3"
+                  className="mr-3 radio-large"
                 />
                 Penemu (Orang yang Menemukan)
               </label>
@@ -179,7 +239,7 @@ const CreatePost = () => {
                   value="Pencari"
                   checked={reportType === "Pencari"}
                   onChange={(e) => setReportType(e.target.value)}
-                  className="mr-3"
+                  className="mr-3 radio-large"
                 />
                 Pencari (Orang yang Mencari)
               </label>

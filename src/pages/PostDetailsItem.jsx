@@ -11,6 +11,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import Loader from "../component/Loader";
 import { useTheme } from '../context/ThemeContext';
+import Swal from 'sweetalert2';
 
 const PostDetailsItem = () => {
   const postId = useParams().id;
@@ -33,13 +34,44 @@ const PostDetailsItem = () => {
   };
 
   const handleDeletePost = async () => {
-    try {
-      const res = await axios.delete(URL + "/api/posts/" + postId, {
-        withCredentials: true
-      });
-      navigate("/Item");
-    } catch (err) {
-      console.log(err);
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      customClass: {
+        confirmButton: 'swal-button'
+      }
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const res = await axios.delete(URL + "/api/posts/" + postId, {
+          withCredentials: true
+        });
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'Your post has been deleted.',
+          icon: 'success',
+          customClass: {
+            confirmButton: 'swal-button'
+          }
+        });
+        navigate("/Item");
+      } catch (err) {
+        console.log(err);
+        Swal.fire({
+          title: 'Error!',
+          text: 'There was an error deleting your post.',
+          icon: 'error',
+          customClass: {
+            confirmButton: 'swal-button'
+          }
+        });
+      }
     }
   };
 
