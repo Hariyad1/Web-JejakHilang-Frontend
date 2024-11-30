@@ -19,7 +19,6 @@ import ProtectedRoute from "./context/ProtectedRoute"
 import NotFound from "./pages/NotFound"
 
 const App = () => {
-
   return (
     <UserContextProvider>
         <Routes>

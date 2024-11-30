@@ -31,7 +31,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className={`bg-gradient-to-r from-blue-500 to-purple-500 p-4 ${theme}`}>
+    <div className={`bg-gradient-to-r from-blue-500 to-violet-500 p-4 ${theme}`}>
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <h1 className="text-2xl md:text-3xl font-extrabold text-white">

@@ -73,7 +73,7 @@ const Register = () => {
 
   return (
     <div className={`flex flex-col h-screen ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-100'}`}>
-      <header className="p-4 flex justify-between items-center bg-gradient-to-r from-blue-500 to-purple-500 mb-8">
+      <header className="p-4 flex justify-between items-center bg-gradient-to-r from-blue-500 to-violet-500 mb-8">
         <h1 className="text-lg md:text-3xl font-extrabold mr-4 pl-0 pr-0 md:pl-20 md:pr-0">
           <Link to="/"> Temukan atau Laporkan Barang Hilang Anda</Link>
         </h1>

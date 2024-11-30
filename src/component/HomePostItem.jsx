@@ -41,7 +41,7 @@ const HomePostItem = ({ post }) => {
           </div>
         </div>
 
-        <p className="text-sm text-gray-600 mb-4">
+        <p className="text-sm text-gray-600 mb-4 break-words">
           <span>{post.desc.slice(0, 200)} </span>
           <button
             onClick={() => window.location.href = '#'}

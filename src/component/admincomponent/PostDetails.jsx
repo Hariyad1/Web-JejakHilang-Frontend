@@ -26,6 +26,16 @@ const PostDetails = ({ selectedPost, closePopup }) => {
           </div>
           <div className="mt-4 bg-gray-100 p-4 rounded-md">
             <h1 className="text-gray-700 mb-4">{selectedPost.desc}</h1>
+            {selectedPost.categories?.length > 0 && (
+              <div className="flex space-x-2 mb-3">
+                {selectedPost.categories.map((c, i) => (
+                  <div key={i} className="bg-gray-200 rounded-md p-1">
+                    <TagOutlined className="mr-2" />
+                    {c}
+                  </div>
+                ))}
+              </div>
+            )}
             <p className="text-gray-600">
               <UserOutlined className="mr-2" />
               Posted by: {selectedPost.username}
@@ -34,14 +44,10 @@ const PostDetails = ({ selectedPost, closePopup }) => {
               <PhoneOutlined className="mr-2" />
               Contact Number: {selectedPost.contactNo}
             </p>
-            {selectedPost.categories?.length > 0 && (
-              <div className="flex space-x-2 mb-2">
-                {selectedPost.categories.map((c, i) => (
-                  <div key={i} className="bg-gray-200 rounded-md p-1">
-                    <TagOutlined className="mr-2" />
-                    {c}
-                  </div>
-                ))}
+            {selectedPost.reportType && (
+              <div className="text-sm font-medium mt-2 p-2 bg-gray-200 rounded-md inline-block max-w-max">
+                <FileOutlined className="mr-2" />
+                {selectedPost.reportType}
               </div>
             )}
             <h3 className="text-blue-600 text-xl font-semibold mt-4">Comments:</h3>
@@ -53,12 +59,6 @@ const PostDetails = ({ selectedPost, closePopup }) => {
               ))
             ) : (
               <p className="text-gray-500">No comments available</p>
-            )}
-            {selectedPost.reportType && (
-              <div className="text-sm font-medium mt-2 p-2 bg-gray-200 rounded-md inline-block max-w-max">
-                <FileOutlined className="mr-2" />
-                {selectedPost.reportType}
-              </div>
             )}
           </div>
         </div>
