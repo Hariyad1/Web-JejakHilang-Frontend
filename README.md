@@ -100,22 +100,6 @@ For Logging in Make sure the server side or backend side is running
 To run this project, you will need to add the following environment variables to your `.env` by creating it in the folder or you can rename the envExamples in the directory to `.env`
 
 
-**The environment variables:**
-
-MIDTRANS_CLIENT_ID = `Your Midtrans CLient ID`
-
-MIDTRANS_API_URL= `https://app.sandbox.midtrans.com`
-
-VITE_API_URL= `http://localhost:5000/api`
-
-
-For the Midtrans Client ID, go ahead and make a Midtrans Account in *[Midtrans Login](https://dashboard.midtrans.com/login)*
-
-Once you are Logged in and are in midtrans dashboard you dont need to continue the business registration, go straigth to 
-`settings -> Acces Keys`
-you will find the MIDTRANS_CLIENT_ID
-
-
 ## Demo
 
 Demo Access
