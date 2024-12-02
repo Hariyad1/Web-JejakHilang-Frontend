@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Comment from "../component/Comment";
-import Footer from "../component/Footer";
-import Navbar from "../component/Navbar";
+import Comment from "../components/Comment";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import { BiEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { UserOutlined, PhoneOutlined, TagOutlined, FileOutlined, CalendarOutlined } from "@ant-design/icons";
@@ -9,7 +9,7 @@ import axios from "axios";
 import { IF, URL } from "../url";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
-import Loader from "../component/Loader";
+import Loader from "../components/Loader";
 import { useTheme } from '../context/ThemeContext';
 import Swal from 'sweetalert2';
 

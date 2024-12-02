@@ -1,9 +1,9 @@
-import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import './index.css';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from './context/ThemeContext';
-import ThemeWrapper from './component/ThemeWrapper';
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+import { BrowserRouter } from 'react-router-dom'
+import { ThemeProvider } from './context/ThemeContext'
+import ThemeWrapper from './components/ThemeWrapper'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -13,4 +13,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </ThemeWrapper>
     </ThemeProvider>
   </BrowserRouter>
-);
+)

@@ -3,6 +3,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom"
 import { useTheme } from '../context/ThemeContext';
+import image1 from '../assets/images/rb_2150696452.png';
+import image2 from '../assets/images/rb_2150696455.png';
+import image3 from '../assets/images/rb_2150696461.png';
 
 const SectionCategorize = () => {
   const { theme } = useTheme();
@@ -21,21 +24,21 @@ const SectionCategorize = () => {
       >
         <div>
           <img
-            src="./imges/rb_2150696452.png"
+            src={image1}
             alt="Category Image 1"
             className="object-contain h-screen w-auto"
           />
         </div>
         <div>
           <img
-            src="./imges/rb_2150696455.png"
+            src={image2}
             alt="Category Image 2"
             className="object-contain h-screen w-auto"
           />
         </div>
         <div>
           <img
-            src="./imges/rb_2150696461.png"
+            src={image3}
             alt="Category Image 3"
             className="object-contain h-screen w-auto"
           />

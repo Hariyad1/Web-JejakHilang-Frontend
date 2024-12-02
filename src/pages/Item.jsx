@@ -1,11 +1,11 @@
 import axios from "axios"
-import Footer from "../component/Footer"
-import HomePostItem from "../component/HomePostItem"
-import Navbar from "../component/Navbar"
+import Footer from "../components/Footer"
+import HomePostItem from "../components/HomePostItem"
+import Navbar from "../components/Navbar"
 import { IF, URL } from "../url"
 import { useContext, useEffect, useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Loader from '../component/Loader'
+import Loader from '../components/Loader'
 import { UserContext } from "../context/UserContext"
 import { SearchOutlined } from "@ant-design/icons";
 

@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
-import Navbar from '../component/Navbar';
-import Footer from '../component/Footer';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import aboutImage from '../assets/images/about.svg';
+import hariyadiImage from '../assets/images/hariyadi.svg';
+import keivinImage from '../assets/images/keivin.svg';
 
 const TentangKami = () => {
   const navigate = useNavigate();
@@ -33,6 +36,11 @@ const TentangKami = () => {
 };
 
 const OurTeam = () => {
+  const teamMembers = [
+    { name: "Hariyadi", role: "Fullstack Developer", img: hariyadiImage },
+    { name: "Keivin Immanuel Akta Purba", role: "Frontend Developer", img: keivinImage },
+  ];
+
   return (
     <div className="w-full text-center mt-8">
       <h2 className="text-3xl font-bold mb-4">Tim Kami</h2>
@@ -41,10 +49,7 @@ const OurTeam = () => {
         Dengan keahlian dan pengalaman yang luas, kami bekerja sama untuk mencapai tujuan bersama dan memberikan solusi inovatif bagi pengguna kami.
       </p>
       <div className="flex flex-wrap justify-center">
-        {[
-          { name: "Hariyadi", role: "Fullstack Developer", img: "hariyadi.svg" },
-          { name: "Keivin Immanuel Akta Purba", role: "Frontend Developer", img: "keivin.svg" },
-        ].map((member, index) => (
+        {teamMembers.map((member, index) => (
           <div key={index} className="w-full md:w-1/4 p-4">
             <img src={member.img} alt={member.name} className="rounded-full mx-auto mb-4" />
             <h3 className="text-xl font-bold">{member.name}</h3>
@@ -79,7 +84,7 @@ const TentangKamiPage = () => {
           <TentangKami />
           <div className="w-full md:w-2/5 flex justify-center">
             <img
-              src="imges/about.svg"
+              src={aboutImage}
               alt="Jejak Hilang"
               style={{ width: '500px', height: '500px' }}
               className="transform transition duration-500 hover:scale-105"

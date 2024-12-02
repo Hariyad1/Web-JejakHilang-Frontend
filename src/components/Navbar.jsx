@@ -15,6 +15,8 @@ const Navbar = () => {
   const path = useLocation().pathname;
   const { user, setUser } = useContext(UserContext);
   const { theme, toggleTheme } = useTheme();
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   const showMenu = () => {
     setMenu(!menu);
@@ -41,17 +43,33 @@ const Navbar = () => {
         <div className="hidden md:flex items-center justify-center space-x-4 ml-16">
           {user ? (
             <>
-              <h3 className="border rounded p-1 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
-                <Link to={"/profile/" + user._id}>Profil</Link>
+              <h3
+                className={`border rounded p-1 hover:underline transition-colors duration-300 ${
+                  currentPath === `/profile/${user._id}` ? 'bg-white text-blue-500' : 'text-white hover:bg-white hover:text-blue-500'
+                } ${theme === 'light' && currentPath === `/profile/${user._id}` ? 'text-black' : ''}`}
+              >
+                <Link to={`/profile/${user._id}`}>Profil</Link>
               </h3>
-              <h3 className="border rounded p-1 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
+              <h3
+                className={`border rounded p-1 hover:underline transition-colors duration-300 ${
+                  currentPath === '/write' ? 'bg-white text-blue-500' : 'text-white hover:bg-white hover:text-blue-500'
+                } ${theme === 'light' && currentPath === '/write' ? 'text-black' : ''}`}
+              >
                 <Link to="/write">Buat Laporan</Link>
               </h3>
-              <h3 className="border rounded p-1 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
-                <Link to={"/myposts/" + user._id}>Laporan Saya</Link>
+              <h3
+                className={`border rounded p-1 hover:underline transition-colors duration-300 ${
+                  currentPath === `/myposts/${user._id}` ? 'bg-white text-blue-500' : 'text-white hover:bg-white hover:text-blue-500'
+                } ${theme === 'light' && currentPath === `/myposts/${user._id}` ? 'text-black' : ''}`}
+              >
+                <Link to={`/myposts/${user._id}`}>Laporan Saya</Link>
               </h3>
-              <h3 className="border rounded p-1 hover:underline text-white hover:bg-white hover:text-blue-500 transition-colors duration-300">
-                <Link to={"/Item"}>Daftar Laporan</Link>
+              <h3
+                className={`border rounded p-1 hover:underline transition-colors duration-300 ${
+                  currentPath === '/Item' ? 'bg-white text-blue-500' : 'text-white hover:bg-white hover:text-blue-500'
+                } ${theme === 'light' && currentPath === '/Item' ? 'text-black' : ''}`}
+              >
+                <Link to="/Item">Daftar Laporan</Link>
               </h3>
               <h3
                 onClick={handleLogout}

@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from "antd";
 import { CloseOutlined, UserOutlined, PhoneOutlined, FileOutlined, TagOutlined, CalendarOutlined } from "@ant-design/icons";
 import Draggable from 'react-draggable';
-import Comment from '../../component/Comment';
+import Comment from '../../components/Comment';
 import '../../App.css';
 
 const PostDetails = ({ selectedPost, closePopup }) => {

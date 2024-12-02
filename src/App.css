@@ -13,10 +13,10 @@
 }
 
 .custom-swal-button {
-  background-color: #4CAF50 !important; /* Warna hijau */
-  color: white !important; /* Warna teks putih */
-  font-weight: bold !important; /* Teks tebal */
-  border-radius: 5px !important; /* Sudut membulat */
+  background-color: #4CAF50 !important;
+  color: white !important;
+  font-weight: bold !important;
+  border-radius: 5px !important;
 }
 
 .popup-container {
@@ -25,8 +25,8 @@
 }
 
 .radio-large {
-  transform: scale(1.5); /* Adjust the scale as needed */
-  margin-right: 0.5rem; /* Optional: Adjust spacing */
+  transform: scale(1.5);
+  margin-right: 0.5rem;
 }
 
 .light {
@@ -138,7 +138,7 @@
 .dark .ant-select-selector {
   background-color: #444;
   border-color: #666;
-  color: #000000; /* Warna teks dropdown tetap hitam */
+  color: #000000;
 }
 
 .dark .ant-select-arrow {
@@ -199,24 +199,22 @@
   background-color: #004494;
 }
 
-/* Tambahkan ini ke file CSS Anda */
 .hide-scrollbar {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+  display: none;
 }
 
-/* Tambahkan ini ke file CSS Anda */
 .dark-mode .ant-table-column-sort {
-  background-color: #2b2b2b !important; /* Warna latar belakang untuk kolom yang diurutkan */
-  color: #ffffff !important; /* Warna teks untuk kolom yang diurutkan */
+  background-color: #2b2b2b !important;
+  color: #ffffff !important;
 }
 
 .dark-mode .ant-btn-danger {
-  background-color: #ff4d4f; /* Warna merah gelap */
+  background-color: #ff4d4f;
   border-color: #ff4d4f;
   color: white;
 }

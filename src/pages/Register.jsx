@@ -1,12 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import Footer from "../component/Footer";
+import Footer from "../components/Footer";
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { URL } from "../url";
 import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2';
 import { UserContext } from "../context/UserContext";
-import ThemeToggle from '../component/ThemeToggle';
+import ThemeToggle from '../components/ThemeToggle';
 import { useTheme } from '../context/ThemeContext';
 import '../App.css';
 

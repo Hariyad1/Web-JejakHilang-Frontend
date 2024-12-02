@@ -1,8 +1,8 @@
 import React from 'react';
-import ThemeToggle from '../component/ThemeToggle';
-import SectionCategorize from "../component/SectionCategorize"
-import Footer from "../component/Footer"
-import FeatureSection from "../component/FeatureSection"
+import ThemeToggle from '../components/ThemeToggle';
+import SectionCategorize from "../components/SectionCategorize"
+import Footer from "../components/Footer"
+import FeatureSection from "../components/FeatureSection"
 import { useTheme } from '../context/ThemeContext';
 
 const Home = () => {

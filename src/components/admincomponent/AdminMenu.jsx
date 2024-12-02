@@ -1,4 +1,3 @@
-// frontend/src/components/AdminMenu.jsx
 import React from 'react';
 import { Button } from "antd";
 import { FileTextOutlined, UserOutlined } from '@ant-design/icons';

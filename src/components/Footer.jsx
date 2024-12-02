@@ -1,4 +1,5 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import logoJh from '../assets/logojh.svg';
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
           <h2 className="text-xl font-semibold text-center mb-2">Kontak Kami</h2>
           <div className="flex flex-col md:flex-row items-center space-x-0 md:space-x-4">
             <div className="flex flex-col items-center mb-4 md:mb-0 mr-0 md:mr-4">
-              <img src="/logojh.svg" alt="Logo JejakHilang" className="w-24 h-24" />
+              <img src={logoJh} alt="Logo JejakHilang" className="w-24 h-24" />
               <span className="text-lg">
                 <span className="text-black">Jejak</span>
                 <span className="text-blue-300">Hilang</span>

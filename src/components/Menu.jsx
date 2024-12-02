@@ -13,7 +13,6 @@ const navigate=useNavigate()
 const handleLogout=async()=>{
   try{
     const res=await axios.get(URL+"/api/auth/logout",{withCredentials:true})
-    // console.log(res)
     setUser(null)
     navigate("/login")
 

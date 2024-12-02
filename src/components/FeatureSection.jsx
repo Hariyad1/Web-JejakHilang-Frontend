@@ -1,4 +1,3 @@
-// frontend/src/component/FeatureSection.jsx
 import React from 'react';
 import { motion } from "framer-motion";
 import { CustomerServiceOutlined } from "@ant-design/icons";
@@ -6,7 +5,12 @@ import { CustomerServiceOutlined } from "@ant-design/icons";
 const features = [
   {
     title: "Laporan Barang Hilang",
-    description: "Laporkan barang yang hilang dengan mudah dan cepat.",
+    description: (
+      <>
+        Laporkan barang hilang atau laporkan barang temuan
+        <br /> dengan mudah dan cepat.
+      </>
+    ),
     icon: "📦",
   },
   {
@@ -16,7 +20,7 @@ const features = [
   },
   {
     title: "Layanan Bantuan 24/7",
-    description: "Layanan bantuan 24/7 untuk membantu Anda.",
+    description: "Layanan bantuan 24/7 melalui kontak kami di bawah.",
     icon: <CustomerServiceOutlined />,
   },
 ];
@@ -47,6 +51,9 @@ const boxVariants = {
 };
 
 const FeatureSection = () => {
+  const title = "Fitur Unggulan JejakHilang";
+  const highlightWord = "Hilang";
+
   return (
     <div className="relative container mx-auto py-12">
       <motion.h2
@@ -55,13 +62,39 @@ const FeatureSection = () => {
         animate="visible"
         variants={textRevealVariants}
       >
-        Fitur Jejak Hilang
+        {title.split(highlightWord)[0].split("").map((char, index) => (
+          <motion.span
+            key={`title-${index}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.05, duration: 0.2 }}
+          >
+            {char}
+          </motion.span>
+        ))}
+        {highlightWord.split("").map((char, index) => (
+          <motion.span
+            key={`highlight-${index}`}
+            style={{ color: '#93C5FD' }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: (title.length + index) * 0.2,
+              duration: 0.7,
+              repeat: Infinity,
+              repeatType: "loop",
+              repeatDelay: 1,
+            }}
+          >
+            {char}
+          </motion.span>
+        ))}
       </motion.h2>
       <div className="flex justify-around flex-wrap relative z-10">
         {features.map((feature, index) => (
           <motion.div
             key={index}
-            className="bg-white p-6 rounded-lg shadow-lg m-4"
+            className="bg-white p-6 rounded-lg shadow-lg m-4 text-center"
             custom={index}
             initial="hidden"
             whileInView="visible"

@@ -46,7 +46,7 @@ const PostTable = ({ posts, theme, showPostDetails, deletePost }) => {
           key: 'reportType',
           className: 'hidden md:table-cell',
           sorter: (a, b) => {
-            const order = { 'pencari': 1, 'penemu': 2 };
+            const order = { 'Pencari': 1, 'Penemu': 2 };
             return order[a.reportType] - order[b.reportType];
           },
         },

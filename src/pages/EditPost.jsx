@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
-import Footer from "../component/Footer"
-import Navbar from "../component/Navbar"
+import Footer from "../components/Footer"
+import Navbar from "../components/Navbar"
 import {ImCross} from 'react-icons/im'
 import axios from "axios"
 import { URL, IF } from "../url"
@@ -44,7 +44,6 @@ const EditPost = () => {
   const handleUpdate=async (e)=>{
     e.preventDefault();
 
-    // Validate title: minimum 5 characters
     if (title.trim().length < 5) {
       Swal.fire({
         icon: 'error',
@@ -57,7 +56,6 @@ const EditPost = () => {
       return;
     }
 
-    // Validate categories: maximum 3 categories
     if (cats.length > 2) {
       Swal.fire({
         icon: 'error',
@@ -70,7 +68,6 @@ const EditPost = () => {
       return;
     }
 
-    // Validate description: minimum 25 characters
     if (desc.trim().length < 25) {
       Swal.fire({
         icon: 'error',
@@ -83,7 +80,6 @@ const EditPost = () => {
       return;
     }
 
-    // Validate contact number: must be filled and valid
     if (!validateContactNo(contactNo)) {
       Swal.fire({
         icon: 'error',
@@ -96,7 +92,6 @@ const EditPost = () => {
       return;
     }
 
-    // Validate report type: must be selected
     if (!reportType) {
       Swal.fire({
         icon: 'error',

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../component/Navbar';
-import Footer from '../component/Footer';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const PrivacyPolicy = () => {
   const navigate = useNavigate();

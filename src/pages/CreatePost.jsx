@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from '../context/UserContext';
-import Footer from "../component/Footer";
-import Navbar from "../component/Navbar";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import { ImCross } from 'react-icons/im';
 import { IF, URL } from '../url';
 import axios from 'axios';

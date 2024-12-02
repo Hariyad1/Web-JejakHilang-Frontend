@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import Footer from "../component/Footer";
-import Navbar from "../component/Navbar";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import axios from "axios";
 import { IF, URL } from "../url";
 import { UserContext } from "../context/UserContext";

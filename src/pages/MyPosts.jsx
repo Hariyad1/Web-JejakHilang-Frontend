@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router-dom"
-import Footer from "../component/Footer"
-import Navbar from "../component/Navbar"
+import Footer from "../components/Footer"
+import Navbar from "../components/Navbar"
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../context/UserContext"
 import axios from "axios"
 import { IF, URL } from "../url"
-import HomePostItem from "../component/HomePostItem"
-import Loader from "../component/Loader"
+import HomePostItem from "../components/HomePostItem"
+import Loader from "../components/Loader"
 import { SearchOutlined } from "@ant-design/icons";
 import { useTheme } from '../context/ThemeContext';
 
@@ -18,12 +18,10 @@ const MyPosts = () => {
   const { user } = useContext(UserContext)
   const { theme } = useTheme();
 
-  // State untuk pencarian, paginasi, dan jumlah entitas
   const [searchTerm, setSearchTerm] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
   const [entriesPerPage, setEntriesPerPage] = useState(5)
 
-  // State untuk tab yang dipilih
   const [selectedTab, setSelectedTab] = useState("all")
 
   const fetchPosts = async () => {
@@ -44,12 +42,10 @@ const MyPosts = () => {
     fetchPosts()
   }, [search, user])
 
-  // Debugging: Log posts
   useEffect(() => {
     console.log("Posts:", posts)
   }, [posts])
 
-  // Filter posts berdasarkan searchTerm dan selectedTab
   const filteredPosts = posts.filter(post => {
     console.log("Post reportType:", post.reportType);
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -57,16 +53,13 @@ const MyPosts = () => {
     return matchesSearch && matchesTab;
   });
 
-  // Hitung total halaman
   const totalPages = Math.ceil(filteredPosts.length / entriesPerPage)
 
-  // Ambil posts untuk halaman saat ini
   const currentPosts = filteredPosts.slice(
     (currentPage - 1) * entriesPerPage,
     currentPage * entriesPerPage
   )
 
-  // Fungsi untuk mengubah tab
   const handleTabChange = (tab) => {
     setSelectedTab(tab)
   }
