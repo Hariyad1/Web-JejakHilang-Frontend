@@ -59,14 +59,16 @@ const FeatureSection = () => {
       <motion.h2
         className="text-3xl font-bold text-center mb-8 relative z-10"
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
         variants={textRevealVariants}
       >
         {title.split(highlightWord)[0].split("").map((char, index) => (
           <motion.span
             key={`title-${index}`}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: index * 0.05, duration: 0.2 }}
           >
             {char}
@@ -77,9 +79,10 @@ const FeatureSection = () => {
             key={`highlight-${index}`}
             style={{ color: '#93C5FD' }}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{
-              delay: (title.length + index) * 0.2,
+              delay: index * 0.1,
               duration: 0.7,
               repeat: Infinity,
               repeatType: "loop",
