@@ -95,11 +95,6 @@ npm run dev
 For Logging in Make sure the server side or backend side is running
 
 
-## Environment Variables
-
-To run this project, you will need to add the following environment variables to your `.env` by creating it in the folder or you can rename the envExamples in the directory to `.env`
-
-
 ## Demo
 
 Demo Access
