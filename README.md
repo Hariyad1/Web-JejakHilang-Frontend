@@ -130,8 +130,3 @@ Demo Access
 [Web-JejakHilang](https://)
 
 [Dokumen Penggunaan Aplikasi](https://youtu.be/)
-
-```bash
-Username : admin@gmail.com
-Password : admin123
-```
