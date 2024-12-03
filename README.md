@@ -129,8 +129,6 @@ Demo Access
 
 [Web-JejakHilang](https://)
 
-[Video Presentasi](https://youtu.be/)
-
 [Dokumen Penggunaan Aplikasi](https://youtu.be/)
 
 ```bash
