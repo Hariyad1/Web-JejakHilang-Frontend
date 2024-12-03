@@ -96,6 +96,7 @@ For Logging in Make sure the server side or backend side is running
 
 ## URL Configuration
 
+<<<<<<< HEAD
 In the JejakHilang web application, there are two important URLs used to connect the frontend with backend services and third-party services. Below is an explanation of each URL:
 
 1. **Backend URL**
@@ -116,6 +117,8 @@ In the JejakHilang web application, there are two important URLs used to connect
    To obtain your ImageKit URL, first, create an account on [ImageKit.io](https://imagekit.io/) if you haven't already. Once logged in, navigate to the ImageKit dashboard. From there, go to Settings and select URL Endpoints. Here, you will find your ImageKit URL, which will look something like https://ik.imagekit.io/your_imagekit_id. Copy this URL for use in your application configuration.
 
 
+=======
+>>>>>>> e4a9eb96243b3a9b7a508a86041506c457ff80cc
 ## Demo
 
 Demo Access
