@@ -66,7 +66,7 @@ Halaman Admin
 Clone the project
 
 ```bash
-git clone https://github.com/Hariyad1/Web-JejakHilang-Backend.git
+git clone https://github.com/Hariyad1/Web-JejakHilang-Frontend.git
 ```
 
 Make sure to be in Frontend-main directory
@@ -94,10 +94,26 @@ npm run dev
 
 For Logging in Make sure the server side or backend side is running
 
+## URL Configuration
 
-## Environment Variables
+In the JejakHilang web application, there are two important URLs used to connect the frontend with backend services and third-party services. Below is an explanation of each URL:
 
-To run this project, you will need to add the following environment variables to your `.env` by creating it in the folder or you can rename the envExamples in the directory to `.env`
+1. **Backend URL**
+
+   ```javascript
+   export const URL = "http://localhost:5000";
+   ```
+
+   This URL connects the frontend application with the backend server, directing all API requests made by the frontend to this address. It is utilized throughout the application for operations such as user authentication, data management, and database interaction. To ensure proper functionality, make sure your backend server is running at the specified address and port. If the server configuration changes, update this URL to match the new server address.
+
+2. **ImageKit URL**
+
+   ```javascript
+   export const IF = "https://ik.imagekit.io/your_imagekit_url";
+   ```
+
+   This URL accesses the ImageKit service, which provides storage and management for images uploaded by users. It is used to display images within the application, such as photos of lost or found items. To use this service effectively, ensure you have an active ImageKit account and that the URL endpoint is configured correctly. If you are using a different endpoint, update this URL to reflect your configuration. By understanding and configuring these URLs correctly, you can ensure that the JejakHilang web application functions properly and connects to the necessary services.
+   To obtain your ImageKit URL, first, create an account on [ImageKit.io](https://imagekit.io/) if you haven't already. Once logged in, navigate to the ImageKit dashboard. From there, go to Settings and select URL Endpoints. Here, you will find your ImageKit URL, which will look something like https://ik.imagekit.io/your_imagekit_id. Copy this URL for use in your application configuration.
 
 
 ## Demo
