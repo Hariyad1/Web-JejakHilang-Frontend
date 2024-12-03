@@ -17,7 +17,13 @@ export function UserContextProvider({children}){
 
     const getUser=async()=>{
       try{
-        const res=await axios.get(URL+"/api/auth/refetch",{withCredentials:true})
+        const token = localStorage.getItem('token');
+        const res=await axios.get(URL+"/api/auth/refetch",{
+          withCredentials:true,
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
         console.log("User data:", res.data)
         setUser(res.data)
 
@@ -29,7 +35,13 @@ export function UserContextProvider({children}){
 
     const logout=async()=>{
       try{
-        await axios.get(URL+"/api/auth/logout",{withCredentials:true})
+        const token = localStorage.getItem('token');
+        await axios.get(URL+"/api/auth/logout",{
+          withCredentials:true,
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
         setUser(null)
         window.location.href="/login"
       }
