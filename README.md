@@ -1,39 +1,49 @@
 # Web JejakHilang
 
-JejakHilang adalah platform terdepan untuk pelaporan dan pencarian barang hilang. Dengan teknologi terkini dan jaringan yang luas, kami menghubungkan orang-orang yang kehilangan barang dengan mereka yang menemukannya.
+Website "JejakHilang" dirancang untuk membantu masyarakat dalam mencari dan melaporkan barang hilang secara online. Platform ini bertujuan untuk memudahkan pengguna dalam menemukan barang yang hilang serta meningkatkan kesadaran akan pentingnya pelaporan, baik itu pelaporan penemuan barang maupun pelaporan barang hilang. Dengan fitur-fitur yang dirancang untuk kenyamanan pengguna, "JejakHilang" diharapkan dapat menjadi solusi efektif dalam pencarian barang hilang.
+
+## About Team
+
+**ID Team : DB3-PS009**
+- B243068C - [@Hariyadi](https://github.com/hariyad1)
+- B243064C - [@Keivin Immanuel Akta Purba](https://github.com/hariyad1)
+
+## Latar Belakang
+
+Kehilangan barang, baik itu barang pribadi atau dokumen penting, sering menimbulkan keresahan. Setiap hari, laporan barang hilang muncul di berbagai tempat seperti transportasi umum, kampus, dan pusat perbelanjaan. Sayangnya, tidak ada platform terpusat yang efektif untuk melaporkan dan mencari barang hilang, sehingga banyak barang tidak kembali ke pemiliknya.
+Proyek "JejakHilang" bertujuan untuk mengatasi masalah ini dengan menciptakan solusi digital yang menghubungkan orang yang kehilangan barang dengan mereka yang menemukannya. Kami ingin menyediakan platform yang memfasilitasi pengembalian barang hilang secara efisien.
+
+Saat ini, pelaporan barang hilang tidak terorganisir, sering kali mengandalkan media sosial atau pengumuman fisik. Dengan teknologi digital, ada peluang untuk menciptakan platform yang lebih terstruktur dan mudah diakses.
+
+Kami memilih proyek ini berdasarkan pengalaman pribadi kehilangan barang dan kesulitan dalam mencarinya. Tujuan kami adalah memudahkan pelaporan dan pencarian barang hilang, menyediakan fitur pencarian yang efisien, serta menjamin keamanan dan privasi data pengguna. Kami berharap proyek ini dapat mengurangi jumlah barang hilang yang tidak kembali dan memberikan solusi yang lebih baik bagi masyarakat.
 
 ## Screenshots
 **Destkop**
 
-HomePage
-![App Screenshot](https:jpeg)
+Halaman Home
+![App Screenshot](https://ik.imagekit.io/jejakhilang/Untitled%20design123.png?updatedAt=1733230034071)
 
 Halaman User
-![App Screenshot](https:png)
+![App Screenshot](https://ik.imagekit.io/jejakhilang/profile.png?updatedAt=1733221569278)
 
-![App Screenshot](https:/png)
+![App Screenshot](https://ik.imagekit.io/jejakhilang/create.jpg?updatedAt=1733221569256)
+
+![App Screenshot](https://ik.imagekit.io/jejakhilang/laporan%20saya.png?updatedAt=1733221569275)
+
+![App Screenshot](https://ik.imagekit.io/jejakhilang/daftar%20laporan1.png?updatedAt=1733221569490)
+
+![App Screenshot](https://ik.imagekit.io/jejakhilang/detail%20laporan.png?updatedAt=1733221569585)
 
 Halaman Admin
-![App Screenshot](https://png)
+![App Screenshot](https://ik.imagekit.io/jejakhilang/admin%20post%20management.png?updatedAt=1733221569208)
+
+![App Screenshot](https://ik.imagekit.io/jejakhilang/admin%20user%20management.png?updatedAt=1733221569492)
 
 **Handphone**
 
-![App Screenshot](https://.png)
+![App Screenshot](https://ik.imagekit.io/jejakhilang/halaman%20responsif%20mobile1.png?updatedAt=1733231427498)
 
-![App Screenshot](https://png)
-
-![App Screenshot](https://i.s.png)
-
-
-
-
-
-
-
-## Authors
-
-- [@Hariyadi](https://github.com/hariyad1)
-- [@Keivin Immanuel Akta Purba](https://github.com/hariyad1)
+![App Screenshot](https://ik.imagekit.io/jejakhilang/responsif%20mobile2.png?updatedAt=1733232469308)
 
 ## Features
 
@@ -115,15 +125,13 @@ In the JejakHilang web application, there are two important URLs used to connect
    This URL accesses the ImageKit service, which provides storage and management for images uploaded by users. It is used to display images within the application, such as photos of lost or found items. To use this service effectively, ensure you have an active ImageKit account and that the URL endpoint is configured correctly. If you are using a different endpoint, update this URL to reflect your configuration. By understanding and configuring these URLs correctly, you can ensure that the JejakHilang web application functions properly and connects to the necessary services.
    To obtain your ImageKit URL, first, create an account on [ImageKit.io](https://imagekit.io/) if you haven't already. Once logged in, navigate to the ImageKit dashboard. From there, go to Settings and select URL Endpoints. Here, you will find your ImageKit URL, which will look something like https://ik.imagekit.io/your_imagekit_id. Copy this URL for use in your application configuration.
 
-## Demo
-
 Demo Access
 
 [Web-JejakHilang](https://)
 
-[Video Penggunaan Aplikasi](https://youtu.be/)
+[Video Presentasi](https://youtu.be/)
 
-[Video Instalasi Lokal](https://youtu.be/)
+[Dokumen Penggunaan Aplikasi](https://youtu.be/)
 
 ```bash
 Username : admin@gmail.com
