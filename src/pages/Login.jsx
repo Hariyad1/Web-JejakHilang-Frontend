@@ -39,7 +39,7 @@ const Login = () => {
     }
     try {
       const res = await axios.post(URL + "/api/auth/login", { email, password });
-      console.log(res.data);
+      console.log('Respons dari server:', res.data);
       const token = res.data.token;
       if (token) {
         localStorage.setItem('authToken', token);
