@@ -38,21 +38,25 @@ const Login = () => {
       return;
     }
     try {
-      const res = await axios.post(URL + "/api/auth/login", { email, password }, { withCredentials: true });
+      const res = await axios.post(URL + "/api/auth/login", { email, password });
       console.log(res.data);
       const token = res.data.token;
-      localStorage.setItem('authToken', token);
-      setUser(res.data);
-      Swal.fire({
-        icon: 'success',
-        title: 'Login Berhasil',
-        showConfirmButton: false,
-        timer: 1500
-      });
-      if (res.data.role === "admin") {
-        navigate("/admin");
+      if (token) {
+        localStorage.setItem('authToken', token);
+        setUser(res.data);
+        Swal.fire({
+          icon: 'success',
+          title: 'Login Berhasil',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        if (res.data.role === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/item");
+        }
       } else {
-        navigate("/item");
+        console.error('Token tidak ditemukan dalam respons');
       }
     } catch (err) {
       Swal.fire({

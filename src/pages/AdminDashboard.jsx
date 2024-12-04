@@ -36,6 +36,7 @@ const AdminDashboard = () => {
   const fetchPosts = async () => {
     try {
       const token = localStorage.getItem('authToken');
+      console.log('Token dari localStorage:', token);
       const res = await axios.get(URL + "/api/admin/posts", {
         headers: {
           Authorization: `Bearer ${token}`
