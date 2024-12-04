@@ -35,7 +35,12 @@ const AdminDashboard = () => {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get(URL + "/api/admin/posts", { withCredentials: true });
+      const token = localStorage.getItem('authToken');
+      const res = await axios.get(URL + "/api/admin/posts", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setPosts(res.data);
     } catch (err) {
       console.log(err);
@@ -44,7 +49,12 @@ const AdminDashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get(URL + "/api/admin/users", { withCredentials: true });
+      const token = localStorage.getItem('authToken');
+      const res = await axios.get(URL + "/api/admin/users", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setUsers(res.data);
     } catch (err) {
       console.log(err);

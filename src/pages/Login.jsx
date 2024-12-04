@@ -39,6 +39,9 @@ const Login = () => {
     }
     try {
       const res = await axios.post(URL + "/api/auth/login", { email, password }, { withCredentials: true });
+      console.log(res.data);
+      const token = res.data.token;
+      localStorage.setItem('authToken', token);
       setUser(res.data);
       Swal.fire({
         icon: 'success',
