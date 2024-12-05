@@ -1,6 +1,6 @@
 {
     "id": "com.jejakhilang.app",
-    "start_url": "./index.html",
+    "start_url": "/",
     "name": "JejakHilang",
     "short_name": "JejakHilang",
     "description": "Temukan atau Laporkan Barang Hilang Anda",
