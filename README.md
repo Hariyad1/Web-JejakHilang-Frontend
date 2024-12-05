@@ -6,7 +6,7 @@ Website "JejakHilang" dirancang untuk membantu masyarakat dalam mencari dan mela
 
 **ID Team : DB3-PS009**
 - B243068C - [@Hariyadi](https://github.com/hariyad1)
-- B243064C - [@Keivin Immanuel Akta Purba](https://github.com/hariyad1)
+- B243064C - [@Keivin Immanuel Akta Purba](https://github.com/abangpurba)
 
 ## Latar Belakang
 
@@ -41,7 +41,7 @@ Halaman Admin
 
 **Handphone**
 
-![App Screenshot](https://ik.imagekit.io/jejakhilang/halaman%20responsif%20mobile1.png?updatedAt=1733231427498)
+![App Screenshot](https://ik.imagekit.io/jejakhilang/responsif%20mobile1.png?updatedAt=1733231741382)
 
 ![App Screenshot](https://ik.imagekit.io/jejakhilang/responsif%20mobile2.png?updatedAt=1733232469308)
 
@@ -111,10 +111,10 @@ In the JejakHilang web application, there are two important URLs used to connect
 1. **Backend URL**
 
    ```javascript
-   export const URL = "http://localhost:5000";
+   export const URL = "http://localhost:PORT";
    ```
 
-   This URL connects the frontend application with the backend server, directing all API requests made by the frontend to this address. It is utilized throughout the application for operations such as user authentication, data management, and database interaction. To ensure proper functionality, make sure your backend server is running at the specified address and port. If the server configuration changes, update this URL to match the new server address.
+   Replace PORT with the port number you desire, such as 3000, 5000, or another port that matches your backend server configuration. This URL connects the frontend application with the backend server, directing all API requests made by the frontend to this address. It is utilized throughout the application for operations such as user authentication, data management, and database interaction. To ensure proper functionality, make sure your backend server is running at the specified address and port. If the server configuration changes, update this URL to match the new server address.
 
 2. **ImageKit URL**
 
@@ -125,8 +125,16 @@ In the JejakHilang web application, there are two important URLs used to connect
    This URL accesses the ImageKit service, which provides storage and management for images uploaded by users. It is used to display images within the application, such as photos of lost or found items. To use this service effectively, ensure you have an active ImageKit account and that the URL endpoint is configured correctly. If you are using a different endpoint, update this URL to reflect your configuration. By understanding and configuring these URLs correctly, you can ensure that the JejakHilang web application functions properly and connects to the necessary services.
    To obtain your ImageKit URL, first, create an account on [ImageKit.io](https://imagekit.io/) if you haven't already. Once logged in, navigate to the ImageKit dashboard. From there, go to Settings and select URL Endpoints. Here, you will find your ImageKit URL, which will look something like https://ik.imagekit.io/your_imagekit_id. Copy this URL for use in your application configuration.
 
-Demo Access
+## Link
 
-[Web-JejakHilang](https://)
+[Website-JejakHilang](https://web-jejakhilang.vercel.app)
 
-[Dokumen Penggunaan Aplikasi](https://youtu.be/)
+[Slide Presentasi](https://www.canva.com/design/DAGXLk3jGGY/H-DUtiHNgir1fwak5Jzrtg/edit?utm_content=DAGXLk3jGGY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+[Video Presentasi](https://youtu.be/-cZ_Rqz-ANc)
+
+[Demo Aplikasi](https://youtu.be/mY3lvQ8Li3Y)
+
+[Dokumen Penggunaan Aplikasi](https://docs.google.com/document/d/1obSpM2NWG_QOuHz3pW2fpAfJEUP0O_FUMe1cp79Nhp4/edit?usp=sharing)
+
+[Back-End Dokumentasi](https://github.com/Hariyad1/Web-JejakHilang-Backend?tab=readme-ov-file#readme)
