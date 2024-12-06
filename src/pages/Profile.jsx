@@ -112,16 +112,43 @@ const Profile = () => {
   };
 
   const handleUserDelete = async () => {
-    try {
-      const res = await axios.delete(URL + "/api/users/" + user._id, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-        }
-      });
-      setUser(null);
-      navigate("/");
-    } catch (err) {
-      console.log(err);
+    const result = await Swal.fire({
+      title: 'Apakah Anda yakin?',
+      text: "Anda tidak dapat mengembalikan data yang telah dihapus!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal',
+      customClass: {
+        confirmButton: 'swal-button',
+        cancelButton: 'swal-button'
+      }
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const res = await axios.delete(URL + "/api/users/" + user._id, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+          }
+        });
+        setUser(null);
+        navigate("/");
+        Swal.fire(
+          'Dihapus!',
+          'Akun Anda telah dihapus.',
+          'success'
+        );
+      } catch (err) {
+        console.log(err);
+        Swal.fire(
+          'Gagal!',
+          'Terjadi kesalahan saat menghapus akun.',
+          'error'
+        );
+      }
     }
   };
 
