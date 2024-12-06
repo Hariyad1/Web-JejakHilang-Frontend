@@ -284,7 +284,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="lg:w-[70%] w-full lg:ml-8 flex flex-col justify-between">
+        <div className="lg:w-[70%] w-full lg:ml-8 flex flex-col justify-start mb-8">
           <h1 className="text-2xl md:text-3xl font-bold mb-4">Postingan Anda:</h1>
           <div className={`overflow-x-auto p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
             <Table
