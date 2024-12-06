@@ -104,7 +104,7 @@ const Navbar = () => {
           </button>
           <div
             onClick={showMenu}
-            className="md:hidden text-2xl cursor-pointer text-white relative"
+            className="md:hidden text-2xl cursor-pointer text-white relative z-50"
           >
             <p className="cursor-pointer relative">
               <MenuOutlined />
