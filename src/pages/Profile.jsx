@@ -214,67 +214,65 @@ const Profile = () => {
   ];
 
   return (
-    <div id="root">
-      <div className={`min-h-screen ${theme}`}>
-        <Navbar />
-        <div className="px-4 md:px-8 mt-8 mb-8 flex flex-col lg:flex-row mx-0 md:mx-2 lg:mx-32 z-10">
-          <div className="flex flex-col items-center lg:items-start lg:w-[30%] w-full mb-8 lg:mb-0">
-            <div className={`flex flex-col space-y-4 items-start p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md ${theme === 'dark' ? 'text-white' : 'text-black'}`}
-                 style={{ width: '100%', maxWidth: '300px', minHeight: '270px' }}>
-              <h1 className="text-2xl font-bold mb-4">Profile</h1>
-              <div className="flex items-center space-x-2">
-                <UserOutlined />
-                <input
-                  onChange={(e) => setUsername(e.target.value)}
-                  value={username}
-                  className="px-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  placeholder="Your Username"
-                  type="text"
-                />
-              </div>
-              <div className="flex items-center space-x-2">
-                <MailOutlined />
-                <input
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={email}
-                  className="px-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  placeholder="Your Email"
-                  type="email"
-                />
-              </div>
-              <div className="flex items-center space-x-4 mt-8">
-                <button
-                  onClick={handleUserUpdate}
-                  className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm font-semibold transition duration-300 ease-in-out"
-                >
-                  Update
-                </button>
-                <button
-                  onClick={handleUserDelete}
-                  className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 text-sm font-semibold transition duration-300 ease-in-out"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="lg:w-[70%] w-full lg:ml-8">
-            <h1 className="text-2xl md:text-3xl font-bold mb-4">Postingan Anda:</h1>
-            <div className={`overflow-x-auto p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
-              <Table
-                dataSource={posts}
-                columns={columns}
-                rowKey="_id"
-                pagination={{
-                  ...pagination,
-                  showTotal: (total, range) => `Total items: ${total}`,
-                  showSizeChanger: true,
-                  pageSizeOptions: ['5', '10', '20'],
-                }}
-                onChange={handleTableChange}
-                scroll={{ x: '100%' }}
+    <div id="root" className={`min-h-screen flex flex-col ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
+      <Navbar />
+      <div className="flex-grow px-4 md:px-8 mt-8 mb-8 flex flex-col lg:flex-row mx-0 md:mx-2 lg:mx-32 z-10">
+        <div className="flex flex-col items-center lg:items-start lg:w-[30%] w-full mb-8 lg:mb-0">
+          <div className={`flex flex-col space-y-4 items-start p-4 rounded-lg shadow-md ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
+               style={{ width: '100%', maxWidth: '300px', minHeight: '270px' }}>
+            <h1 className="text-2xl font-bold mb-4">Profile</h1>
+            <div className="flex items-center space-x-2">
+              <UserOutlined />
+              <input
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+                className="px-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="Your Username"
+                type="text"
               />
             </div>
+            <div className="flex items-center space-x-2">
+              <MailOutlined />
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                className="px-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="Your Email"
+                type="email"
+              />
+            </div>
+            <div className="flex items-center space-x-4 mt-8">
+              <button
+                onClick={handleUserUpdate}
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm font-semibold transition duration-300 ease-in-out"
+              >
+                Update
+              </button>
+              <button
+                onClick={handleUserDelete}
+                className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 text-sm font-semibold transition duration-300 ease-in-out"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="lg:w-[70%] w-full lg:ml-8 flex flex-col justify-between">
+          <h1 className="text-2xl md:text-3xl font-bold mb-4">Postingan Anda:</h1>
+          <div className={`overflow-x-auto p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
+            <Table
+              dataSource={posts}
+              columns={columns}
+              rowKey="_id"
+              pagination={{
+                ...pagination,
+                showTotal: (total, range) => `Total items: ${total}`,
+                showSizeChanger: true,
+                pageSizeOptions: ['5', '10', '20'],
+              }}
+              onChange={handleTableChange}
+              scroll={{ x: '100%' }}
+            />
           </div>
         </div>
       </div>

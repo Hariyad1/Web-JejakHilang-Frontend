@@ -1,5 +1,5 @@
 // frontend/src/components/PostDetails.jsx
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button } from "antd";
 import { CloseOutlined, UserOutlined, PhoneOutlined, FileOutlined, TagOutlined, CalendarOutlined } from "@ant-design/icons";
 import Draggable from 'react-draggable';
@@ -7,16 +7,36 @@ import Comment from '../../components/Comment';
 import '../../App.css';
 
 const PostDetails = ({ selectedPost, closePopup }) => {
+  const scrollRef = useRef(null);
+  let startY = 0;
+  let scrollTop = 0;
+
+  const handleTouchStart = (e) => {
+    startY = e.touches[0].pageY;
+    scrollTop = scrollRef.current.scrollTop;
+  };
+
+  const handleTouchMove = (e) => {
+    const y = e.touches[0].pageY;
+    const walk = y - startY;
+    scrollRef.current.scrollTop = scrollTop - walk;
+  };
+
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start p-4 popup-container">
-      <Draggable cancel=".no-drag">
-        <div className="bg-white p-4 rounded-lg shadow-lg w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl mt-10 md:mt-24 max-h-[90vh] overflow-y-auto">
-          <div className="flex justify-between items-center cursor-move">
-            <h1 className="text-lg sm:text-xl font-bold text-blue-600">{selectedPost.title}</h1>
-            <Button onClick={closePopup} type="danger" className="no-drag bg-blue-100 p-4 rounded-md" icon={<CloseOutlined />}>
-              Close  
-            </Button>
-          </div>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start p-4 z-50">
+      <div className="bg-white p-4 rounded-lg shadow-lg w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl mt-10 md:mt-24 max-h-[90vh] overflow-hidden">
+        <div className="flex justify-between items-center cursor-move">
+          <h1 className="text-lg sm:text-xl font-bold text-blue-600">{selectedPost.title}</h1>
+          <Button onClick={closePopup} type="danger" className="no-drag bg-blue-100 p-4 rounded-md" icon={<CloseOutlined />}>
+            Close  
+          </Button>
+        </div>
+        <div
+          ref={scrollRef}
+          className="overflow-y-auto max-h-[70vh] w-full"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+        >
           <p className="text-gray-500 text-sm mt-1 flex items-center">
             <CalendarOutlined className="mr-2" />
             {new Date(selectedPost.updatedAt).toLocaleString()}
@@ -62,7 +82,7 @@ const PostDetails = ({ selectedPost, closePopup }) => {
             )}
           </div>
         </div>
-      </Draggable>
+      </div>
     </div>
   );
 };
