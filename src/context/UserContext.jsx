@@ -17,31 +17,25 @@ export function UserContextProvider({children}){
 
     const getUser=async()=>{
       try{
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('authToken');
+        if (!token) return;
+
         const res=await axios.get(URL+"/api/auth/refetch",{
-          withCredentials:true,
           headers: {
             'Authorization': `Bearer ${token}`
           }
         })
-        console.log("User data:", res.data)
         setUser(res.data)
 
       }
       catch(err){
-        console.log(err)
+        console.log("Error fetching user:", err)
       }
     }
 
     const logout=async()=>{
       try{
-        const token = localStorage.getItem('token');
-        await axios.get(URL+"/api/auth/logout",{
-          withCredentials:true,
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        })
+        localStorage.removeItem('authToken');
         setUser(null)
         window.location.href="/login"
       }

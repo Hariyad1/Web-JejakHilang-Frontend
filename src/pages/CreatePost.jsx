@@ -124,7 +124,8 @@ const CreatePost = () => {
       try {
         const imgUpload = await axios.post(URL + "/api/upload", formData, {
           headers: {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
           }
         });
 
@@ -135,7 +136,11 @@ const CreatePost = () => {
     }
 
     try {
-      const res = await axios.post(URL + "/api/posts/create", post, { withCredentials: true });
+      const res = await axios.post(URL + "/api/posts/create", post, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+        }
+      });
       navigate("/posts/post/" + res.data._id);
     } catch (err) {
       console.log(err);
@@ -172,7 +177,7 @@ const CreatePost = () => {
                 <input
                   value={cat}
                   onChange={(e) => setCat(e.target.value)}
-                  className="px-4 py-2 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 w-64 mr-4"
+                  className="px-4 py-2 outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 w-64 mr-4 mb-2"
                   placeholder="Masukkan Kategori Laporan"
                   type="text"
                 />

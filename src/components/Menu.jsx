@@ -10,15 +10,19 @@ const {user}=useContext(UserContext)
 const {setUser}=useContext(UserContext)
 const navigate=useNavigate()
 
-const handleLogout=async()=>{
-  try{
-    const res=await axios.get(URL+"/api/auth/logout",{withCredentials:true})
-    setUser(null)
-    navigate("/login")
-
-  }
-  catch(err){
-    console.log(err)
+const handleLogout = async () => {
+  try {
+    const token = localStorage.getItem('authToken');
+    await axios.get(URL + "/api/auth/logout", {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    localStorage.removeItem('authToken');
+    setUser(null);
+    navigate("/login");
+  } catch (err) {
+    console.log(err);
   }
 }
   return (

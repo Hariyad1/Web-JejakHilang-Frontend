@@ -24,7 +24,13 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get(URL + "/api/auth/logout", { withCredentials: true });
+      const token = localStorage.getItem('authToken');
+      await axios.get(URL + "/api/auth/logout", {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      localStorage.removeItem('authToken');
       setUser(null);
       navigate("/login");
     } catch (err) {

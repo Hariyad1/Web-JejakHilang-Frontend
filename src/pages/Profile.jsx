@@ -36,7 +36,11 @@ const Profile = () => {
   const fetchProfile = async () => {
     if (!user || !user._id) return;
     try {
-      const res = await axios.get(URL + "/api/users/" + user._id);
+      const res = await axios.get(URL + "/api/users/" + user._id, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+        }
+      });
       setUsername(res.data.username);
       setEmail(res.data.email);
       setPassword(res.data.password);
@@ -78,7 +82,11 @@ const Profile = () => {
       const res = await axios.put(
         URL + "/api/users/" + user._id,
         { username, email, password },
-        { withCredentials: true }
+        {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+          }
+        }
       );
       setUpdated(true);
       Swal.fire({
@@ -106,7 +114,9 @@ const Profile = () => {
   const handleUserDelete = async () => {
     try {
       const res = await axios.delete(URL + "/api/users/" + user._id, {
-        withCredentials: true,
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+        }
       });
       setUser(null);
       navigate("/");
@@ -118,7 +128,11 @@ const Profile = () => {
   const fetchUserPosts = async () => {
     if (!user || !user._id) return;
     try {
-      const res = await axios.get(URL + "/api/posts/user/" + user._id);
+      const res = await axios.get(URL + "/api/posts/user/" + user._id, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+        }
+      });
       setPosts(res.data);
     } catch (err) {
       console.log(err);

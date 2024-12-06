@@ -36,7 +36,6 @@ const AdminDashboard = () => {
   const fetchPosts = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      console.log('Token dari localStorage:', token);
       const res = await axios.get(URL + "/api/admin/posts", {
         headers: {
           Authorization: `Bearer ${token}`
@@ -76,7 +75,12 @@ const AdminDashboard = () => {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(URL + `/api/admin/posts/${id}`, { withCredentials: true });
+        const token = localStorage.getItem('authToken');
+        await axios.delete(URL + `/api/admin/posts/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         setPosts(posts.filter(post => post._id !== id));
         Swal.fire({
           title: 'Dihapus!',
@@ -107,7 +111,12 @@ const AdminDashboard = () => {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(URL + `/api/admin/users/${id}`, { withCredentials: true });
+        const token = localStorage.getItem('authToken');
+        await axios.delete(URL + `/api/admin/users/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         setUsers(users.filter(user => user._id !== id));
         Swal.fire({
           title: 'Dihapus!',
@@ -126,8 +135,10 @@ const AdminDashboard = () => {
 
   const logout = async () => {
     try {
-      await axios.get(URL + "/api/auth/logout", { withCredentials: true });
+      localStorage.removeItem('authToken');
+      
       setUser(null);
+      
       window.location.href = "/login";
     } catch (err) {
       console.log(err);

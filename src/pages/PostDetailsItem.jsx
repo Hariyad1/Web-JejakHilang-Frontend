@@ -27,7 +27,6 @@ const PostDetailsItem = () => {
     try {
       const res = await axios.get(URL + "/api/posts/" + postId);
       setPost(res.data);
-      console.log("Post data:", res.data);
     } catch (err) {
       console.log(err);
     }
@@ -35,13 +34,13 @@ const PostDetailsItem = () => {
 
   const handleDeletePost = async () => {
     const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: 'Apakah Anda yakin?',
+      text: "Anda tidak dapat membatalkan ini!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'Ya, hapus!',
       customClass: {
         confirmButton: 'swal-button'
       }
@@ -50,11 +49,13 @@ const PostDetailsItem = () => {
     if (result.isConfirmed) {
       try {
         const res = await axios.delete(URL + "/api/posts/" + postId, {
-          withCredentials: true
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+          }
         });
         Swal.fire({
-          title: 'Deleted!',
-          text: 'Your post has been deleted.',
+          title: 'Dihapus!',
+          text: 'Postingan Anda telah dihapus.',
           icon: 'success',
           customClass: {
             confirmButton: 'swal-button'
@@ -65,7 +66,7 @@ const PostDetailsItem = () => {
         console.log(err);
         Swal.fire({
           title: 'Error!',
-          text: 'There was an error deleting your post.',
+          text: 'Terjadi kesalahan saat menghapus postingan Anda.',
           icon: 'error',
           customClass: {
             confirmButton: 'swal-button'
@@ -101,7 +102,11 @@ const PostDetailsItem = () => {
       const res = await axios.post(
         URL + "/api/comments/create",
         { comment: comment, author: user.username, postId: postId, userId: user._id },
-        { withCredentials: true }
+        {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+          }
+        }
       );
       setComments([...comments, res.data]);
     } catch (err) {

@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { URL } from "../url";
-import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
+import { UserOutlined, MailOutlined, LockOutlined, EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2';
 import { UserContext } from "../context/UserContext";
 import ThemeToggle from '../components/ThemeToggle';
@@ -18,6 +18,7 @@ const Register = () => {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const { theme } = useTheme();
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -117,9 +118,15 @@ const Register = () => {
             <input
               onChange={(e) => setPassword(e.target.value)}
               className="w-full pl-10 py-2 border rounded-lg focus:outline-none"
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Masukkan Password"
             />
+            <span
+              className="absolute top-2/4 transform -translate-y-2/4 right-0 flex items-center pr-3 cursor-pointer"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+            </span>
           </div>
           <button
             onClick={handleRegister}

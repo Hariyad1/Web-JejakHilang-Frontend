@@ -129,14 +129,19 @@ const EditPost = () => {
       };
 
       if (file) {
-        const data = new FormData();
-        const filename = Date.now() + file.name;
-        data.append("img", filename);
-        data.append("file", file);
-        post.photo = filename;
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("fileName", Date.now() + file.name);
 
         try {
-          const imgUpload = await axios.post(URL + "/api/upload", data);
+          const imgUpload = await axios.post(URL + "/api/upload", formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+            }
+          });
+
+          post.photo = imgUpload.data.url;
         } catch (err) {
           console.log(err);
         }
@@ -145,7 +150,11 @@ const EditPost = () => {
       }
 
       try {
-        const res = await axios.put(URL + "/api/posts/" + postId, post, { withCredentials: true });
+        const res = await axios.put(URL + "/api/posts/" + postId, post, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+          }
+        });
         Swal.fire({
           title: 'Diperbarui!',
           text: 'Postingan Anda telah diperbarui.',

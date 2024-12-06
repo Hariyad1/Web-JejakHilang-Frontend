@@ -45,7 +45,9 @@ const HomePostItem = ({ post }) => {
           <span>{post.desc.slice(0, 200)} </span>
           <button
             onClick={() => window.location.href = '#'}
-            className="text-blue-500 hover:underline bg-transparent border-none cursor-pointer"
+            className={`${
+              theme === 'dark' ? 'text-blue-300' : 'text-blue-500'
+            } hover:underline bg-transparent border-none cursor-pointer`}
           >
             Baca Selengkapnya
           </button>

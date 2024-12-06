@@ -11,7 +11,12 @@ const Comment = ({c,comments,setComments}) => {
   const {user}=useContext(UserContext)
   const deleteComment=async(id)=>{
     try{
-      await axios.delete(URL+"/api/comments/"+id,{withCredentials:true})
+      const token = localStorage.getItem('authToken');
+      await axios.delete(URL+"/api/comments/"+id,{
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       setComments(comments.filter(comment => comment._id !== id))
     }
     catch(err){

@@ -4,7 +4,7 @@ import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { IF, URL } from "../url";
 import { UserContext } from "../context/UserContext";
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
+import { MailOutlined, LockOutlined, EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2';
 import ThemeToggle from '../components/ThemeToggle';
 import { useTheme } from '../context/ThemeContext';
@@ -16,6 +16,7 @@ const Login = () => {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const { theme } = useTheme();
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -39,7 +40,6 @@ const Login = () => {
     }
     try {
       const res = await axios.post(URL + "/api/auth/login", { email, password });
-      console.log('Respons dari server:', res.data);
       const token = res.data.token;
       if (token) {
         localStorage.setItem('authToken', token);
@@ -83,7 +83,7 @@ const Login = () => {
           <Link to="/register" className="text-white hover:underline ml-4 pl-0 pr-0 md:pr-20">Daftar</Link>
         </div>
       </header>
-      <main className="flex-1 flex justify-center items-center">
+      <main className="flex-1 flex justify-center items-center mb-4">
         <div className={`w-full md:w-1/3 p-4 ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white'} shadow-md rounded-lg`}>
           <h1 className="text-2xl font-bold mb-4 text-center">Masukkan Akun Anda</h1>
           <label className="block text-sm font-medium mb-2">Email</label>
@@ -106,9 +106,15 @@ const Login = () => {
             <input
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-10 py-2 border rounded-lg focus:outline-none focus:border-black"
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Masukkan Password"
             />
+            <span
+              className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+            </span>
           </div>
           <button
             onClick={handleLogin}
